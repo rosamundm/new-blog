@@ -3,9 +3,14 @@
 
 {% block body_class %}template-homepage{% endblock %}
 
-
 {% block content %}
 
-hello
+
+<div class="container">
+  <div class="homepage-textbox" style="position: relative; margin: 50px; justify-content: center;">
+    {# hardcoded landing page text #}
+    {% include "home/intro_text.html" %}
+  </div>
+</div>
 
 {% endblock content %}

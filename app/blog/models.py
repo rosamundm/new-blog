@@ -7,7 +7,7 @@ from taggit.models import Tag, TaggedItemBase
 from wagtail.admin.panels import FieldPanel, MultipleChooserPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.fields import StreamField
-from wagtail.models import Orderable, Page
+from wagtail.models import Page
 from wagtail.search import index
 
 from blocks.index import BaseStreamBlock
@@ -35,9 +35,9 @@ class BlogPage(Page):
         FieldPanel("date_published"),
     ]
 
-    # search_fields = Page.search_fields + [
-    #     index.SearchField("body"),
-    # ]
+    search_fields = Page.search_fields + [
+        index.SearchField("body"),
+    ]
 
 
 class BlogIndexPage(RoutablePageMixin, Page):

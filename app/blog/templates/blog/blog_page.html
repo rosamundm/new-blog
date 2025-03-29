@@ -8,8 +8,14 @@
 
 {% block content %}
 
-    <h1>{{ page.title }}</h1>
+<div class="container">
+    <div style="margin: 100px; justify-content: center;">
 
+    <div class="blog-post-title">
+        <h2>{{ page.title }}</h2>
+    </div>
+
+    
     <p class="meta">{{ page.date_published }}</p>
 
     <div class="intro">{{ page.introduction }}</div>
@@ -17,5 +23,9 @@
     {% include_block page.body %}
 
     <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
+
+    </div>
+
+</div>
 
 {% endblock %}
