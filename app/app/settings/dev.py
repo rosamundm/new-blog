@@ -1,12 +1,9 @@
 from .base import *
 
-# SECURITY WARNING: don't run with debug turned on in production!
+
+# don't worry; these are all only used locally
 DEBUG = True
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-#onrf*d%58loz+)io*t)ka1+0oy9rzamuv=y970)0wkq=1)&7g"
-
-# SECURITY WARNING: define the correct hosts in production!
 ALLOWED_HOSTS = ["*"]
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
