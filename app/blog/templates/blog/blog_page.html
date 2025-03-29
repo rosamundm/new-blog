@@ -2,14 +2,19 @@
 
 {% load wagtailcore_tags %}
 
+{% load wagtailimages_tags %}
+
 {% block body_class %}template-blogpage{% endblock %}
 
 {% block content %}
+
+    <h1>{{ page.title }}</h1>
+
     <p class="meta">{{ page.date_published }}</p>
 
     <div class="intro">{{ page.introduction }}</div>
 
-    {{ page.body|richtext }}
+    {% include_block page.body %}
 
     <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
 

@@ -7,68 +7,37 @@ from taggit.models import Tag, TaggedItemBase
 from wagtail.admin.panels import FieldPanel, MultipleChooserPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.fields import StreamField
-from wagtail.models import Page
+from wagtail.models import Orderable, Page
 from wagtail.search import index
 
-from .blocks import BaseStreamBlock
-
-
-class BlogPageTag(TaggedItemBase):
-    """
-    This model allows us to create a many-to-many relationship between
-    the BlogPage object and tags. There's a longer guide on using it at
-    https://docs.wagtail.org/en/stable/reference/pages/model_recipes.html#tagging
-    """
-
-    content_object = ParentalKey(
-        "BlogPage", related_name="tagged_items", on_delete=models.CASCADE
-    )
+from blocks.index import BaseStreamBlock
 
 
 class BlogPage(Page):
     introduction = models.TextField(help_text="Text to describe the page", blank=True)
-    # image = models.ForeignKey(
-    #     "wagtailimages.Image",
-    #     null=True,
-    #     blank=True,
-    #     on_delete=models.SET_NULL,
-    #     related_name="+",
-    #     help_text="Landscape mode only; horizontal width between 1000px and 3000px.",
-    # )
+    image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        help_text="Landscape mode only; horizontal width between 1000px and 3000px.",
+    )
     body = StreamField(
         BaseStreamBlock(), verbose_name="Page body", blank=True, use_json_field=True
     )
-    # subtitle = models.CharField(blank=True, max_length=255)
-    # tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     date_published = models.DateField("Date article published", blank=True, null=True)
 
     content_panels = Page.content_panels + [
-        # FieldPanel("subtitle"),
         FieldPanel("introduction"),
-        # FieldPanel("image"),
+        FieldPanel("image"),
         FieldPanel("body"),
         FieldPanel("date_published"),
-        # FieldPanel("tags"),
     ]
 
     # search_fields = Page.search_fields + [
     #     index.SearchField("body"),
     # ]
-
-    # @property
-    # def get_tags(self):
-    #     tags = self.tags.all()
-    #     base_url = self.get_parent().url
-    #     for tag in tags:
-    #         tag.url = f"{base_url}tags/{tag.slug}/"
-    #     return tags
-
-    # # Specifies parent to BlogPage as being BlogIndexPages
-    # parent_page_types = ["BlogIndexPage"]
-
-    # # Specifies what content types can exist as children of BlogPage.
-    # # Empty list means that no child content types are allowed.
-    # subpage_types = []
 
 
 class BlogIndexPage(RoutablePageMixin, Page):
@@ -135,22 +104,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
         return render(request, "blog/blog_index_page.html", context)
 
     def serve_preview(self, request, mode_name):
-        # Needed for previews to work
         return self.serve(request)
 
-    # Returns the child BlogPage objects for this BlogPageIndex.
-    # If a tag is used then it will filter the posts by tag.
     def get_posts(self, tag=None):
-        posts = BlogPage.objects.live().descendant_of(self)
-        if tag:
-            posts = posts.filter(tags=tag)
-        return posts
-
-    # Returns the list of Tags for all child posts of this BlogPage.
-    def get_child_tags(self):
-        tags = []
-        for post in self.get_posts():
-            # Not tags.append() because we don't want a list of lists
-            tags += post.get_tags
-        tags = sorted(set(tags))
-        return tags
+        return BlogPage.objects.live().descendant_of(self)
