@@ -7,12 +7,14 @@
 {% block content %}
     <h1>{{ page.title }}</h1>
 
-    <div class="intro">{{ page.intro|richtext }}</div>
-
     {% for post in page.get_children %}
-        <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
-        <p>{{ post.specific.date_published }}</p>
-        <p></p>{{ post.specific.intro }}</p>
+    <div class="card border-light mb-3" style="max-width: 20rem;">
+        <div class="card-header">{{ post.specific.date_published }}</div>
+        <div class="card-body">
+          <h4 class="card-title"><a href="{% pageurl post %}">{{ post.title }}</a></h4>
+          <p class="card-text">{{ post.specific.introduction }}</p>
+        </div>
+    </div>
     {% endfor %}
 
 {% endblock %}
