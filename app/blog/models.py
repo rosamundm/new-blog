@@ -1,11 +1,6 @@
-from django.contrib import messages
 from django.db import models
-from django.shortcuts import redirect, render
-from modelcluster.contrib.taggit import ClusterTaggableManager
-from modelcluster.fields import ParentalKey
-from taggit.models import Tag, TaggedItemBase
-from wagtail.admin.panels import FieldPanel, MultipleChooserPanel
-from wagtail.contrib.routable_page.models import RoutablePageMixin, route
+from wagtail.admin.panels import FieldPanel
+from wagtail.contrib.routable_page.models import RoutablePageMixin
 from wagtail.fields import StreamField
 from wagtail.models import Page
 from wagtail.search import index
@@ -24,7 +19,7 @@ class BlogPage(Page):
         help_text="Landscape mode only; horizontal width between 1000px and 3000px.",
     )
     body = StreamField(
-        BaseStreamBlock(), verbose_name="Page body", blank=True, use_json_field=True
+        BaseStreamBlock(features=["bold", "italic", ]), verbose_name="Page body", blank=True, use_json_field=True
     )
     date_published = models.DateField("Date article published", blank=True, null=True)
 
