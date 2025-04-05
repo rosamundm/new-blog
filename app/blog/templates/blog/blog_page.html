@@ -9,23 +9,13 @@
 {% block content %}
 
 <div class="container">
-    <div style="margin: 100px; justify-content: center;">
-
-    <div class="blog-post-title">
-        <h2>{{ page.title }}</h2>
+    <div style="margin: 80px; padding: 20px; justify-content: center; color: black; background-color: #e9e9e8; border-radius: 0.5rem">
+        <div class="blog-post-title">
+            <h2>{{ page.title }}</h2>
+        </div>
+        <h6 class="meta">{{ page.date_published }}</h6>
+        {% include_block page.body %}
     </div>
-
-    
-    <p class="meta">{{ page.date_published }}</p>
-
-    <div class="intro">{{ page.introduction }}</div>
-
-    {% include_block page.body %}
-
-    <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
-
-    </div>
-
 </div>
 
 {% endblock %}
