@@ -6,10 +6,10 @@ from wagtail.blocks import (
     StreamBlock,
     StructBlock,
     TextBlock,
+    URLBlock
 )
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images import get_image_model
-from wagtail.images.blocks import ImageChooserBlock
 
 
 class CaptionedImageBlock(StructBlock):
@@ -18,7 +18,7 @@ class CaptionedImageBlock(StructBlock):
     attribution data
     """
 
-    image = ImageChooserBlock(required=True)
+    image_url = URLBlock(required=False)
     caption = CharBlock(required=False)
     attribution = CharBlock(required=False)
 

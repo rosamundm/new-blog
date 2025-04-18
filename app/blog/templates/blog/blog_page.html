@@ -13,7 +13,8 @@
         <div class="blog-post-title">
             <h2>{{ page.title }}</h2>
         </div>
-        <h6 class="meta">{{ page.date_published }}</h6>
+        <!-- e.g. 18th April 2025-->
+        <h6 class="meta">{{ page.date_published|date:"jS F Y" }}</h6>
         {% include_block page.body %}
     </div>
 </div>

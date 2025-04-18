@@ -10,14 +10,7 @@ from blocks.index import BaseStreamBlock
 
 class BlogPage(Page):
     introduction = models.TextField(help_text="Text to describe the page", blank=True)
-    image = models.ForeignKey(
-        "wagtailimages.Image",
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name="+",
-        help_text="Landscape mode only; horizontal width between 1000px and 3000px.",
-    )
+    image_url = models.URLField(blank=True, null=True)
     body = StreamField(
         BaseStreamBlock(features=["bold", "italic", ]), verbose_name="Page body", blank=True, use_json_field=True
     )
@@ -25,7 +18,7 @@ class BlogPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel("introduction"),
-        FieldPanel("image"),
+        FieldPanel("image_url"),
         FieldPanel("body"),
         FieldPanel("date_published"),
     ]

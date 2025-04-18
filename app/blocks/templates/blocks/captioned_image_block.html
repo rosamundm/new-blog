@@ -1,6 +1,9 @@
 {% load wagtailimages_tags %}
 
 <figure>
-    {%  picture self.image scale-100 class="img-fluid" %}
-    <figcaption>{{ self.caption }} - {{ self.attribution }}</figcaption>
+    <img src="{{ self.image }}" class="img-fluid" />
+    <figcaption style="font-size: 12px">
+        {{ self.caption }}
+        {% if self.attribution %} - {{ self.attribution }}{% endif %}
+    </figcaption>
 </figure>
