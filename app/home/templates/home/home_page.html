@@ -5,11 +5,14 @@
 
 {% block content %}
 
-
 <div class="container">
-  <div class="homepage-textbox" style="position: relative; margin: 50px; justify-content: center;">
-    {# hardcoded landing page text #}
-    {% include "home/intro_text.html" %}
+  <div class="homepage-textbox" style="position: relative; margin: 3.125rem; justify-content: center;">
+    <h2 style="padding-bottom: 1.5rem;">
+      {{ page.title }}
+    </h2>
+    <p>
+      {{ page.body }}
+    </p>
   </div>
 </div>
 
