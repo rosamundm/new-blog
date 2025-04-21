@@ -7,10 +7,10 @@
 {% block content %}
 
 <div class="container" style="margin-bottom: 80px; padding-bottom: 20px;">
-  <div style="margin: 80px; padding: 20px; justify-content: center; border-radius: 0.5rem">
-    <div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); grid-gap: 1.25rem;">
-    {% for post in page.get_children %}
-    <div class="card border-light mb-3" style="max-width: 20rem; padding: 1.25rem;">
+  <div style="margin: 80px; padding: 20px; justify-content: center; align-items: center;">
+    <div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); grid-gap: 1.25rem;">
+    {% for post in posts %}
+      <div class="card border-secondary mb-3" style="max-width: 20rem; border-radius: 0.5rem;">
         <div class="card-header" style="opacity: 0.6">{{ post.specific.date_published|date:"jS F Y" }}</div>
         <div class="card-body">
           <h4 class="card-title" style="text-decoration: none"><a href="{% pageurl post %}">{{ post.title }}</a></h4>
