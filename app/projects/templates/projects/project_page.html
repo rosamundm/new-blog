@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% load wagtailimages_tags %}
+
+{% block body_class %}template-projectpage{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div style="margin: 80px; padding: 1.25rem; justify-content: center;">
+        <div class="blog-post-title">
+            <h2>{{ page.title }}</h2>
+        </div>
+        {% include_block page.body %}
+    </div>
+</div>
+
+{% endblock %}

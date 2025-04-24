@@ -2,19 +2,18 @@
 
 {% load wagtailcore_tags %}
 
-{% block body_class %}template-projectindexpage{% endblock %}
+{% block body_class %}template-blogindexpage{% endblock %}
 
 {% block content %}
 
 <div class="container" style="margin-bottom: 80px; padding-bottom: 20px;">
   <div style="margin: 80px; padding: 20px; justify-content: center; align-items: center;">
     <div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); grid-gap: 1.25rem;">
-    {% for post in posts %}
+    {% for project in projects %}
       <div class="card border-secondary mb-3" style="max-width: 20rem; border-radius: 0.5rem;">
-        <div class="card-header" style="opacity: 0.6">{{ post.specific.date_published|date:"jS F Y" }}</div>
         <div class="card-body">
-          <h4 class="card-title" style="text-decoration: none"><a href="{% pageurl post %}">{{ post.title }}</a></h4>
-          <p class="card-text">{{ post.specific.introduction }}</p>
+          <h4 class="card-title" style="text-decoration: none"><a href="{% pageurl project %}">{{ project.title }}</a></h4>
+          <p class="card-text">{{ project.specific.introduction }}</p>
         </div>
     </div>
     {% endfor %}

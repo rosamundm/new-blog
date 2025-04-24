@@ -53,26 +53,24 @@ class BlogIndexPage(RoutablePageMixin, Page):
         FieldPanel("image"),
     ]
 
-    # Specifies that only BlogPage objects can live under this index page
     subpage_types = ["BlogPage"]
 
-    # Defines a method to access the children of the page (e.g. BlogPage
-    # objects). On the demo site we use this on the HomePage
+    @property
     def children(self):
         return self.get_children().specific().live()
 
-    # Overrides the context to list all child items, that are live, by the
-    # date that they were published
-    # https://docs.wagtail.org/en/stable/getting_started/tutorial.html#overriding-context
     def get_context(self, request):
         context = super(BlogIndexPage, self).get_context(request)
         context["posts"] = (
-            BlogPage.objects.descendant_of(self).live().order_by("-date_published")
+            BlogPage.objects
+            .descendant_of(self)
+            .live()
+            .order_by("-date_published")
         )
         return context
 
-    def serve_preview(self, request, mode_name):
-        return self.serve(request)
-
     def get_posts(self, tag=None):
         return BlogPage.objects.live().descendant_of(self)
+
+    def serve_preview(self, request, mode_name):
+        return self.serve(request)

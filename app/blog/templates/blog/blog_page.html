@@ -9,13 +9,21 @@
 {% block content %}
 
 <div class="container">
-    <div style="margin: 80px; padding: 20px; justify-content: center;">
+    <div style="margin: 5rem; padding: 1.25rem; justify-content: center;">
         <div class="blog-post-title">
             <h2>{{ page.title }}</h2>
         </div>
         <!-- e.g. 18th April 2025-->
-        <h6 class="meta">{{ page.date_published|date:"jS F Y" }}</h6>
+        <h6 class="meta" style="margin-bottom: 2.5rem;"">{{ page.date_published|date:"jS F Y" }}</h6>
         {% include_block page.body %}
+
+        <div style="margin-top: 2.5rem;">
+            <a href="{% pageurl page.get_parent %}">
+                <button type="button" class="btn btn-primary">
+                    Back to blog
+                </button>
+            </a>
+        </div>
     </div>
 </div>
 
