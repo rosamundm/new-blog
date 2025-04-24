@@ -27,6 +27,7 @@ class ProjectPage(Page):
 class ProjectIndexPage(RoutablePageMixin, Page):
     subpage_types = ["ProjectPage"]
 
+    @property
     def children(self):
         return self.get_children().specific().live()
 
