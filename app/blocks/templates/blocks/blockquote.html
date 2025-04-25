@@ -1,5 +1,10 @@
 {% load wagtailimages_tags %}
 
-<blockquote><p class="text">{{ self.text }}</p>
-    <p class="attribute-name">{{ self.attribute_name}}</p>
+<blockquote>
+    <h4 style="font-style: italic; padding: 0 1.5rem 0 1.5rem">
+        {{ self.text }}
+    </h4>
+    <p class="attribute-name" style="font-size: 14px; padding: 0 2rem 0 2rem">
+        {{ self.attribute_name}}
+    </p>
 </blockquote>
