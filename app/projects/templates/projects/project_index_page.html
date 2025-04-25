@@ -2,6 +2,8 @@
 
 {% load wagtailcore_tags %}
 
+{% load wagtailimages_tags %}
+
 {% block body_class %}template-projectindexpage{% endblock %}
 
 {% block content %}
@@ -12,6 +14,9 @@
     {% for project in projects %}
       <div class="card border-secondary mb-3" style="max-width: 20rem; border-radius: 0.5rem;">
         <div class="card-body">
+          <div style="padding-bottom: 1rem;">
+            <img src="{{ project.image_url }}" class="img-fluid" />
+          </div>
           <h4 class="card-title" style="text-decoration: none"><a href="{% pageurl project %}">{{ project.title }}</a></h4>
           <p class="card-text">{{ project.specific.introduction }}</p>
         </div>
