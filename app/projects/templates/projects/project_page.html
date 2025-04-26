@@ -13,8 +13,12 @@
         <div style="padding-bottom: 1rem;">
             <img src="{{ page.image_url }}" class="img-fluid" />
         </div>
-        <div class="blog-post-title">
-            <h2>{{ page.title }}</h2>
+        <div>
+            <h2>
+                <a href="{{ page.link_to_project }}">
+                    {{ page.title }}
+                </a>
+            </h2>
         </div>
         {% include_block page.body %}
     </div>
