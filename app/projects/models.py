@@ -10,6 +10,7 @@ from blocks.index import BaseStreamBlock
 class ProjectPage(Page):
     introduction = models.TextField(blank=True)
     image_url = models.URLField(blank=True, null=True)
+    link_to_project = models.URLField(blank=True, null=True)
     body = StreamField(
         BaseStreamBlock(features=["bold", "italic", ]),
         verbose_name="Page body",
@@ -20,6 +21,7 @@ class ProjectPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel("introduction"),
         FieldPanel("image_url"),
+        FieldPanel("link_to_project"),
         FieldPanel("body"),
     ]
 
