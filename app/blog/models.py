@@ -5,7 +5,7 @@ from wagtail.fields import StreamField
 from wagtail.models import Page
 from wagtail.search import index
 
-from blocks.index import BaseStreamBlock
+from blocks.models import BaseStreamBlock
 
 
 class BlogPage(Page):

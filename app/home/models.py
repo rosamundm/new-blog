@@ -2,7 +2,7 @@ from wagtail.models import Page
 from wagtail.contrib.routable_page.models import RoutablePageMixin
 from wagtail.fields import StreamField
 from wagtail.admin.panels import FieldPanel
-from blocks.index import BaseStreamBlock
+from blocks.models import BaseStreamBlock
 
 
 class HomePage(RoutablePageMixin, Page):

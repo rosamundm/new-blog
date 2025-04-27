@@ -4,7 +4,7 @@ from wagtail.contrib.routable_page.models import RoutablePageMixin
 from wagtail.fields import StreamField
 from wagtail.models import Page
 
-from blocks.index import BaseStreamBlock
+from blocks.models import BaseStreamBlock
 
 
 class ProjectPage(Page):

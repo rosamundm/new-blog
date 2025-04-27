@@ -12,11 +12,6 @@ from wagtail.images import get_image_model
 
 
 class CaptionedImageBlock(StructBlock):
-    """
-    Custom `StructBlock` for utilizing images with associated caption and
-    attribution data
-    """
-
     image_url = URLBlock(required=False)
     caption = CharBlock(required=False)
     attribution = CharBlock(required=False)
@@ -36,15 +31,10 @@ class CaptionedImageBlock(StructBlock):
     class Meta:
         icon = "image"
         template = "blocks/captioned_image_block.html"
-        preview_value = {"attribution": "The Wagtail Bakery"}
         description = "An image with optional caption and attribution"
 
 
 class HeadingBlock(StructBlock):
-    """
-    Custom `StructBlock` that allows the user to select h2 - h4 sizes for headers
-    """
-
     heading_text = CharBlock(classname="title", required=True)
     size = ChoiceBlock(
         choices=[
@@ -60,24 +50,19 @@ class HeadingBlock(StructBlock):
     class Meta:
         icon = "title"
         template = "blocks/heading_block.html"
-        preview_value = {"heading_text": "Healthy bread types", "size": "h2"}
         description = "A heading with level two, three, or four"
 
 
-class BlockQuote(StructBlock):
+class QuoteBlock(StructBlock):
     text = RichTextBlock()
     attribute_name = CharBlock(blank=True, required=False)
 
     class Meta:
         icon = "openquote"
-        template = "blocks/blockquote.html"
+        template = "blocks/quote_block.html"
 
 
 class BaseStreamBlock(StreamBlock):
-    """
-    Define the custom blocks that `StreamField` will utilize
-    """
-
     heading_block = HeadingBlock()
     paragraph_block = RichTextBlock(
         icon="pilcrow",
@@ -85,7 +70,7 @@ class BaseStreamBlock(StreamBlock):
         description="A rich text paragraph",
     )
     image_block = CaptionedImageBlock()
-    block_quote = BlockQuote()
+    quote_block = QuoteBlock()
     embed_block = EmbedBlock(
         help_text="Insert an embed URL e.g https://www.youtube.com/watch?v=SGJFWirQ3ks",
         icon="media",
