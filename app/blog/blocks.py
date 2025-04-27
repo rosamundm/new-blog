@@ -5,7 +5,6 @@ from wagtail.blocks import (
     RichTextBlock,
     StreamBlock,
     StructBlock,
-    TextBlock,
     URLBlock
 )
 from wagtail.embeds.blocks import EmbedBlock
@@ -66,27 +65,14 @@ class HeadingBlock(StructBlock):
 
 
 class BlockQuote(StructBlock):
-    """
-    Custom `StructBlock` that allows the user to attribute a quote to the author
-    """
-
-    text = TextBlock()
-    attribute_name = CharBlock(blank=True, required=False, label="e.g. Mary Berry")
+    text = RichTextBlock()
+    attribute_name = CharBlock(blank=True, required=False)
 
     class Meta:
         icon = "openquote"
         template = "blocks/blockquote.html"
-        preview_value = {
-            "text": (
-                "If you read a lot you're well read / "
-                "If you eat a lot you're well bread."
-            ),
-            "attribute_name": "Willie Wagtail",
-        }
-        description = "A quote with an optional attribution"
 
 
-# StreamBlocks
 class BaseStreamBlock(StreamBlock):
     """
     Define the custom blocks that `StreamField` will utilize
@@ -96,16 +82,6 @@ class BaseStreamBlock(StreamBlock):
     paragraph_block = RichTextBlock(
         icon="pilcrow",
         template="blocks/paragraph_block.html",
-        preview_value=(
-            """
-            <h2>Our bread pledge</h2>
-            <p>As a bakery, <b>breads</b> have <i>always</i> been in our hearts.
-            <a href="https://en.wikipedia.org/wiki/Staple_food">Staple foods</a>
-            are essential for society, and – bread is the tastiest of all.
-            We love to transform batters and doughs into baked goods with a firm
-            dry crust and fluffy center.</p>
-            """
-        ),
         description="A rich text paragraph",
     )
     image_block = CaptionedImageBlock()
