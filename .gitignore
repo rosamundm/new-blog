@@ -3,5 +3,5 @@
 *.sqlite3
 .DS_Store
 __pycache__
-static/
+app/static/
 media/
