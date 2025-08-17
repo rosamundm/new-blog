@@ -9,14 +9,16 @@
 {% block content %}
 
 <div class="container" style="margin-bottom: 80px; padding-bottom: 20px;">
-  <div style="margin: 80px; padding: 20px; justify-content: center; align-items: center;">
+  <div style="margin-top: 80px; justify-content: center; align-items: center;">
     <div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); grid-gap: 1.25rem;">
     {% for project in projects %}
-      <div class="card border-secondary mb-3" style="max-width: 20rem; border-radius: 0.5rem;">
+      <div class="card bg-light mb-3" style="border-radius: 0.5rem;">
         <div class="card-body">
-          <div style="padding-bottom: 1rem;">
-            <img src="{{ project.image_url }}" class="img-fluid" />
-          </div>
+          {% if project.image_url %}
+            <div style="padding-bottom: 1rem;">
+              <img src="{{ project.image_url }}" class="img-fluid" />
+            </div>
+          {% endif %}
           <h4 class="card-title" style="text-decoration: none"><a href="{% pageurl project %}">{{ project.title }}</a></h4>
           <p class="card-text">{{ project.specific.introduction }}</p>
         </div>
