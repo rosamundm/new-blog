@@ -164,6 +164,7 @@ STORAGES = {
 # Wagtail settings
 
 WAGTAIL_SITE_NAME = "app"
+WAGTAIL_AUTO_UPDATE_PREVIEW_INTERVAL = 0
 
 # Search
 # https://docs.wagtail.org/en/stable/topics/search/backends.html
