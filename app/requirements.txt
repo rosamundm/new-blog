@@ -10,7 +10,9 @@ Django==5.2.6
 django-filter==24.3
 django-modelcluster==6.4
 django-permissionedforms==0.1
+django-stubs-ext==5.2.5
 django-taggit==6.1.0
+django-tasks==0.6.1
 django-treebeard==4.7.1
 djangorestframework==3.16.1
 draftjs_exporter==5.1.0
@@ -35,5 +37,5 @@ toml==0.10.2
 typed-ast==1.4.1
 typing_extensions==4.15.0
 urllib3==2.5.0
-wagtail==6.3
+wagtail==6.4
 Willow==1.11.0

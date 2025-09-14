@@ -164,7 +164,8 @@ STORAGES = {
 # Wagtail settings
 
 WAGTAIL_SITE_NAME = "app"
-WAGTAIL_AUTO_UPDATE_PREVIEW_INTERVAL = 0
+WAGTAIL_AUTO_UPDATE_PREVIEW_INTERVAL = 0  # see 6.3 release notes
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 10_000  # see 6.4 release notes
 
 # Search
 # https://docs.wagtail.org/en/stable/topics/search/backends.html
