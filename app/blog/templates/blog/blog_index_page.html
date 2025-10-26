@@ -6,20 +6,26 @@
 
 {% block content %}
 
-<div class="container" style="margin-bottom: 80px; padding-bottom: 20px;">
-  <div style="margin-top: 80px; justify-content: center; align-items: center;">
-    <div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); grid-gap: 1.25rem;">
+<div class="container">
+    <div class="grid-container">
     {% for post in posts %}
-      <div class="card bg-light mb-3" style="border-radius: 0.5rem;">
-        <div class="card-header" style="opacity: 0.6">{{ post.specific.date_published|date:"jS F Y" }}</div>
+      <div class="card bg-light mb-3 rounded-custom">
+        <div class="card-header">
+          {{ post.specific.date_published|date:"jS F Y" }}
+        </div>
         <div class="card-body">
-          <h4 class="card-title" style="text-decoration: none"><a href="{% pageurl post %}">{{ post.title }}</a></h4>
-          <p class="card-text">{{ post.specific.introduction }}</p>
+          <h4 class="card-title">
+            <a href="{% pageurl post %}">
+              {{ post.title }}
+            </a>
+          </h4>
+          <p class="card-text">
+            {{ post.specific.introduction }}
+          </p>
         </div>
     </div>
     {% endfor %}
     </div>
-  </div>
 </div>
 
 {% endblock %}

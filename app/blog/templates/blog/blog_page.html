@@ -9,20 +9,22 @@
 {% block content %}
 
 <div class="container">
-    <div style="color: #485785;">
-        <div class="blog-post-title" style="padding-top: 1.25rem">
-            <h2>{{ page.title }}</h2>
-        </div>
+    <div class="blog-post-title">
+        <h2>{{ page.title }}</h2>
+    </div>
+
+    <h6 class="meta">
         <!-- e.g. 18th April 2025-->
-        <h6 class="meta" style="margin-bottom: 2.5rem;">{{ page.date_published|date:"jS F Y" }}</h6>
-            {% include_block page.body %}
-        <div style="margin-top: 2.5rem; margin-bottom: 5rem">
-            <a href="{% pageurl page.get_parent %}">
-                <button type="button" class="btn btn-primary" style="font-style: normal;">
-                    Back to blog
-                </button>
-            </a>
-        </div>
+        {{ page.date_published|date:"jS F Y" }}
+    </h6>
+
+    {% include_block page.body %}
+    <div class="blog-back-button">
+        <a href="{% pageurl page.get_parent %}">
+            <button type="button" class="btn btn-primary">
+                Back to blog
+            </button>
+        </a>
     </div>
 </div>
 

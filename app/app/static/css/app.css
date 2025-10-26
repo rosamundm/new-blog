@@ -6,3 +6,43 @@ body {
   line-height: 2;
   font-family: "Palatino";
 }
+
+.blog-back-button {
+  margin-top: 2.5rem;
+  margin-bottom: 5rem;
+}
+
+.blog-post-title {
+  padding-top: 1.25rem;
+}
+
+.card-header {
+  opacity: 0.6;
+}
+
+.card-title {
+  text-decoration: none
+}
+
+.container {
+  color: #485785;
+  margin-bottom: 80px;
+  padding-bottom: 20px;
+}
+
+.grid-container {
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 1.25rem;
+  justify-content: center;
+  margin-top: 80px;
+}
+
+.meta {
+  margin-bottom: 2.5rem;
+}
+
+.rounded-custom {
+  border-radius: 0.5rem;
+}
