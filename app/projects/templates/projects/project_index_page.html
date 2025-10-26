@@ -8,24 +8,28 @@
 
 {% block content %}
 
-<div class="container" style="margin-bottom: 80px; padding-bottom: 20px;">
-  <div style="margin-top: 80px; justify-content: center; align-items: center;">
-    <div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); grid-gap: 1.25rem;">
+<div class="container">
+    <div class="grid-container">
     {% for project in projects %}
-      <div class="card bg-light mb-3" style="border-radius: 0.5rem;">
+      <div class="card bg-light mb-3 rounded-custom">
         <div class="card-body">
           {% if project.image_url %}
-            <div style="padding-bottom: 1rem;">
+            <div class="picture-frame">
               <img src="{{ project.image_url }}" class="img-fluid" />
             </div>
           {% endif %}
-          <h4 class="card-title" style="text-decoration: none"><a href="{% pageurl project %}">{{ project.title }}</a></h4>
-          <p class="card-text">{{ project.specific.introduction }}</p>
+          <h4 class="card-title">
+            <a href="{% pageurl project %}">
+              {{ project.title }}
+            </a>
+          </h4>
+          <p class="card-text">
+            {{ project.specific.introduction }}
+          </p>
         </div>
-    </div>
+      </div>
     {% endfor %}
     </div>
-  </div>
 </div>
 
 {% endblock %}

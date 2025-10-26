@@ -39,8 +39,21 @@ body {
   margin-top: 80px;
 }
 
+.homepage-textbox {
+  margin-bottom: 5rem;
+  padding-top: 1.25rem;
+}
+
 .meta {
   margin-bottom: 2.5rem;
+}
+
+.picture-frame {
+  padding-bottom: 1rem;
+}
+
+.project-frame {
+  padding-bottom: 1.25rem
 }
 
 .rounded-custom {
