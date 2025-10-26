@@ -9,6 +9,7 @@ from wagtail.blocks import (
 )
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images import get_image_model
+from wagtail.images.blocks import ImageChooserBlock
 
 
 class CaptionedImageBlock(StructBlock):
@@ -31,6 +32,28 @@ class CaptionedImageBlock(StructBlock):
     class Meta:
         icon = "image"
         template = "blocks/captioned_image_block.html"
+        description = "An image with optional caption and attribution"
+
+
+class CaptionedImageFileBlock(StructBlock):
+    image = ImageChooserBlock(required=False)
+    caption = CharBlock(required=False)
+    attribution = CharBlock(required=False)
+
+    @cached_property
+    def preview_image(self):
+        return get_image_model().objects.last()
+
+    def get_preview_value(self):
+        return {
+            **self.meta.preview_value,
+            "image": self.preview_image,
+            "caption": self.preview_image.description,
+        }
+
+    class Meta:
+        icon = "image"
+        template = "blocks/captioned_image_file_block.html"
         description = "An image with optional caption and attribution"
 
 
@@ -71,6 +94,7 @@ class BaseStreamBlock(StreamBlock):
         description="A rich text paragraph",
     )
     image_block = CaptionedImageBlock()
+    image_file_block = CaptionedImageFileBlock()
     quote_block = QuoteBlock()
     embed_block = EmbedBlock(
         help_text="Insert an embed URL e.g https://www.youtube.com/watch?v=SGJFWirQ3ks",

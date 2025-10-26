@@ -1,0 +1,22 @@
+{% load wagtailimages_tags %}
+
+<figure class="uploaded-image" style="text-align: center;">
+    <!-- set breakpoints -->
+    {% image self.image width-400 as small %}
+    {% image self.image width-800 as medium %}
+    {% image self.image width-1600 as large %}
+    <!-- render image according to screen size -->
+    <img 
+        src="{{ medium.url }}"
+        srcset="{{ small.url }} 400w, {{ medium.url }} 800w, {{ large.url }} 1600w"
+        sizes="100vw"
+        class="img-fluid"
+        loading="lazy"
+    >
+    {% if self.caption %}
+        <figcaption>
+            {{ self.caption }}
+            {% if self.attribution %} - {{ self.attribution }}{% endif %}
+        </figcaption>
+    {% endif %}
+</figure>

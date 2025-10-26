@@ -1,14 +1,16 @@
 {% extends "base.html" %}
 {% load static %}
+{% load wagtailimages_tags %}
 
 {% block body_class %}template-homepage{% endblock %}
 
 {% block content %}
-
 <div class="container">
+  {% if page.image_file %}
+    {% image page.image_file width-800 class="img-fluid" %}
+  {% endif %}
   <div class="homepage-textbox">
-      {{ page.body }}
+    {{ page.body }}
   </div>
 </div>
-
 {% endblock content %}

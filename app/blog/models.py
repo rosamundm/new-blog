@@ -1,7 +1,9 @@
 from django.db import models
+
 from wagtail.admin.panels import FieldPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin
 from wagtail.fields import StreamField
+from wagtail.images import get_image_model_string
 from wagtail.models import Page
 from wagtail.search import index
 
@@ -9,10 +11,20 @@ from blocks.models import BaseStreamBlock
 
 
 class BlogPage(Page):
-    introduction = models.TextField(help_text="Text to describe the page", blank=True)
+    introduction = models.TextField(blank=True)
     image_url = models.URLField(blank=True, null=True)
+    image_file = models.ForeignKey(
+        get_image_model_string(),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
     body = StreamField(
-        BaseStreamBlock(features=["bold", "italic", ]), verbose_name="Page body", blank=True, use_json_field=True
+        BaseStreamBlock(features=["bold", "italic", ]),
+        verbose_name="Page body",
+        blank=True,
+        use_json_field=True
     )
     date_published = models.DateField("Date article published", blank=True, null=True)
 
@@ -31,11 +43,11 @@ class BlogPage(Page):
 class BlogIndexPage(RoutablePageMixin, Page):
     """
     Index page for blogs.
-    We need to alter the page model's context to return the child page objects,
-    the BlogPage objects, so that it works as an index page
+    
+    Alters the page model's context to return the child page objects,
+    the BlogPage objects, so that it works as an index page.
 
-    RoutablePageMixin is used to allow for a custom sub-URL for the tag views
-    defined above.
+    RoutablePageMixin is used to allow for a custom sub-URL for any tag views.
     """
 
     introduction = models.TextField(help_text="Text to describe the page", blank=True)
