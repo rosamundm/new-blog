@@ -9,9 +9,9 @@
 
   <div class="row align-items-center">
     {% if page.image_file %}
-      <div class="col-12 col-md-6 mb-4 mb-md-0">
+      <div class="col-12 col-md-6 mb-4 mb-md-0 d-flex justify-content-center align-items-center">
         {% image page.image_file width-1200 as img %}
-        <img src="{{ img.url }}" alt="{{ img.alt }}" class="img-fluid rounded shadow">
+            <img src="{{ img.url }}" alt="{{ img.alt }}" class="img-fluid rounded shadow">
       </div>
     {% endif %}
 
