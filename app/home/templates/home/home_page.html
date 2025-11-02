@@ -5,12 +5,22 @@
 {% block body_class %}template-homepage{% endblock %}
 
 {% block content %}
-<div class="container">
-  {% if page.image_file %}
-    {% image page.image_file width-800 class="img-fluid" %}
-  {% endif %}
-  <div class="homepage-textbox">
-    {{ page.body }}
+<div class="container my-5">
+
+  <div class="row align-items-center">
+    {% if page.image_file %}
+      <div class="col-12 col-md-6 mb-4 mb-md-0">
+        {% image page.image_file width-1200 as img %}
+        <img src="{{ img.url }}" alt="{{ img.alt }}" class="img-fluid rounded shadow">
+      </div>
+    {% endif %}
+
+    <div class="col-12 col-md-6">
+      <div class="homepage-textbox">
+        {{ page.body }}
+      </div>
+    </div>
   </div>
+
 </div>
 {% endblock content %}
