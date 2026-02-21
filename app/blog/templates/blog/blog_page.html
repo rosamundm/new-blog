@@ -13,7 +13,7 @@
 {% block content %}
 
 <article>
-    <h1 class="blog-post-title">
+    <h1 class="post-title">
         {{ page.title }}
     </h1>
 
@@ -27,7 +27,7 @@
 
     <div class="blog-back-button">
         <a href="{% pageurl page.get_parent %}">
-            <button type="button">
+            <button class="button" type="button">
                 Back to blog
             </button>
         </a>
