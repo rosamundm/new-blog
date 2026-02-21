@@ -13,7 +13,7 @@ urlpatterns = [
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("search/", search_views.search, name="search"),
-    path("sentry-debug/", trigger_division_by_zero_error = lambda request: 1 / 0),
+    # path("sentry-debug/", trigger_division_by_zero_error = lambda request: 1 / 0),
 ]
 
 if settings.DEBUG:
