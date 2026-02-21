@@ -1,31 +1,37 @@
 {% extends "base.html" %}
-
 {% load wagtailcore_tags %}
-
 {% load wagtailimages_tags %}
 
-{% block body_class %}template-blogpage{% endblock %}
+{% block body_class %}
+    template-blogpage
+{% endblock %}
+
+{% block title %}
+    {{ post.title }}
+{% endblock %}
 
 {% block content %}
 
-<div class="container">
-    <div class="blog-post-title">
-        <h2>{{ page.title }}</h2>
+<article>
+    <h1 class="blog-post-title">
+        {{ page.title }}
+    </h1>
+
+    <div class="post-meta">
+        {{ page.date_published|date:"jS F Y" }}
     </div>
 
-    <h6 class="meta">
-        <!-- e.g. 18th April 2025-->
-        {{ page.date_published|date:"jS F Y" }}
-    </h6>
+    <div class="post-content">
+        {% include_block page.body %}
+    </div>
 
-    {% include_block page.body %}
     <div class="blog-back-button">
         <a href="{% pageurl page.get_parent %}">
-            <button type="button" class="btn btn-primary">
+            <button type="button">
                 Back to blog
             </button>
         </a>
     </div>
-</div>
+</article>
 
 {% endblock %}
