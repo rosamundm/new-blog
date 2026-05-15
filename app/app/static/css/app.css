@@ -148,7 +148,7 @@ button:active {
 }
 
 .post-title {
-  font-size: 3.5rem;
+  font-size: 2rem;
   font-weight: normal;
   margin-bottom: 1rem;
   line-height: 1.3;
@@ -263,6 +263,14 @@ button:active {
 @media (max-width: 767px) {
   .hamburger {
     display: flex;
+  }
+
+  .navbar {
+    background-color: #d2e5d4;
+  }
+
+  .navbar-header {
+    font-size: 2rem;
   }
 
   .navbar-menu {
