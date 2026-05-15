@@ -8,23 +8,16 @@
 
 <div class="card-grid">
   {% for post in posts %}
-
     <article class="card">
       <h2>
         <a href="{% pageurl post %}">
           {{ post.title }}
         </a>
       </h2>
-
-      <div class="card-meta">
-        {{ post.specific.date_published|date:"jS F Y" }}
-      </div>
-
       <p>
         {{ post.specific.introduction }}
       </p>
     </article>
-
   {% endfor %}
 </div>
 
