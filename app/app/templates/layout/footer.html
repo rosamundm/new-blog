@@ -1,3 +1,9 @@
+{% load wagtailcore_tags %}
+
 <footer class="footer">
-    © Rosamund Mather {% now "Y" %}
+    © {% wagtail_site as current_site %}
+        {% if current_site and current_site.site_name %}
+          {{ current_site.site_name }}
+        {% endif %}
+    {% now "Y" %}
 </footer>
