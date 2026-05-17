@@ -1,4 +1,6 @@
-- "projects" ausbauen
-- organise css files
+- remove "projects" app
+- organise css files by app
 - rethink photo sizing
 - customise 404/500 pages
+- add local development fixtures
+- add previous/next buttons to blog posts

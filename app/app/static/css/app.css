@@ -1,23 +1,28 @@
 ::selection {
-  color: #bdd9c0;
+  color: #d2e5d4;
 }
 
 body {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.5rem;   /* 16px */
-  background: #bdd9c0;
+  font-size: 1.15rem;  /* 16px */
+  background: #d2e5d4;
   color: #1a2d1c;
   line-height: 1.8;
 }
 
 a {
   text-decoration-line: underline;
+  color: #3c6840;
 }
 
 a:hover {
   text-decoration-line: underline;
   text-decoration-style: wavy;
+}
+
+a:visited {
+  color: #e774dd
 }
 
 header {
@@ -42,27 +47,6 @@ footer {
   width: 100%;
   font-size: 0.9rem;
   text-align: center
-}
-
-button {
-  background-color: #97c39c;
-  color: #1a2d1c;
-  border: none;
-  border-radius: 0.25rem;
-  padding: 0.625rem 1.25rem;
-  font-size: 1rem;
-  font-family: Georgia, "Times New Roman", serif;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #4c8552;
-  color: white;
-}
-
-button:active {
-  background-color: #2b4a2e;
-  color: white;
 }
 
 /* override bootstrap defaults */
@@ -106,9 +90,10 @@ button:active {
 
 .card {
   border: 0.06rem solid #eee;
+  border-radius: 0.3rem;
   padding: 2rem;
   transition: border-color 0.2s ease, transform 0.2s ease;
-  background: #97c39c;
+  background: #bdd9c0;
 }
 
 .card:hover {
@@ -180,7 +165,10 @@ button:active {
 }
 
 .post-content ul,
-.post-content ol,
+.post-content ol {
+  font-size: 1.15rem;
+}
+
 .post-content li {
   font-size: 1.15rem;
 }
@@ -197,7 +185,7 @@ button:active {
 /* navbar */
 
 .navbar {
-  background-color: #bdd9c0;
+  background-color: #d2e5d4;
   padding: 1rem 0;
   position: sticky;
   top: 0;
@@ -272,6 +260,26 @@ button:active {
   transform: rotate(-45deg) translate(8px, -8px);
 }
 
+
+button {
+  background-color: #bdd9c0;
+  color: #1a2d1c;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.625rem 1.25rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #97c39c;
+  color: white;
+}
+
+button:active {
+  background-color: #4c8552;
+  color: white;
+}
+
 /* mobile menu */
 
 @media (max-width: 767px) {
@@ -280,7 +288,7 @@ button:active {
   }
 
   .navbar {
-    background-color: #d2e5d4;
+    background-color: #eff6ef;
   }
 
   .navbar-header {
@@ -293,7 +301,7 @@ button:active {
     left: 0;
     right: 0;
     flex-direction: column;
-    background-color: #d2e5d4;
+    background-color: #eff6ef;
     gap: 0;
     max-height: 0;
     overflow: hidden;
