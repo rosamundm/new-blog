@@ -1,31 +1,24 @@
 {% extends "base.html" %}
-
 {% load wagtailcore_tags %}
-
-{% block body_class %}template-blogindexpage{% endblock %}
+{% block body_class %}
+  template-blogindexpage
+{% endblock %}
 
 {% block content %}
 
-<div class="container">
-    <div class="grid-container">
-    {% for post in posts %}
-      <div class="card bg-light mb-3 rounded-custom" style="height: 100%">
-        <div class="card-header">
-          {{ post.specific.date_published|date:"jS F Y" }}
-        </div>
-        <div class="card-body">
-          <h4 class="card-title">
-            <a href="{% pageurl post %}">
-              {{ post.title }}
-            </a>
-          </h4>
-          <p class="card-text">
-            {{ post.specific.introduction }}
-          </p>
-        </div>
-    </div>
-    {% endfor %}
-    </div>
+<div class="card-grid">
+  {% for post in posts %}
+    <article class="card">
+      <h2>
+        <a href="{% pageurl post %}">
+          {{ post.title }}
+        </a>
+      </h2>
+      <p>
+        {{ post.specific.introduction }}
+      </p>
+    </article>
+  {% endfor %}
 </div>
 
 {% endblock %}
