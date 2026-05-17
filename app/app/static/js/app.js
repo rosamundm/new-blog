@@ -1,3 +1,5 @@
+/* hamburger open/close */
+
 const hamburger = document.getElementById("hamburger");
 const navbarMenu = document.getElementById("navbar-menu");
 
@@ -11,4 +13,23 @@ navbarMenu.querySelectorAll("a").forEach(link => {
     hamburger.classList.remove("active");
     navbarMenu.classList.remove("active");
   });
+});
+
+
+/* detect scroll to hide navbar on mobile view */
+
+let lastScrollTop = 0;
+const navbar = document.querySelector(".navbar");
+
+window.addEventListener("scroll", () => {
+  if (window.innerWidth <= 767) {
+    let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (currentScroll > lastScrollTop) {  // scrolling down
+      navbar.style.transform = "translateY(-100%)";
+    } else {
+      navbar.style.transform = "translateY(0)";
+    }
+    lastScrollTop = Math.max(0, currentScroll);
+  }
 });
