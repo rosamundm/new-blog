@@ -1,3 +1,4 @@
 - "projects" ausbauen
 - organise css files
+- rethink photo sizing
 - customise 404/500 pages

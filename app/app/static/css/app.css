@@ -5,7 +5,7 @@
 body {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.5rem;
+  font-size: 1.5rem;   /* 16px */
   background: #bdd9c0;
   color: #1a2d1c;
   line-height: 1.8;
@@ -177,6 +177,12 @@ button:active {
   height: auto;
   display: block;
   margin: 2rem 0;
+}
+
+.post-content ul,
+.post-content ol,
+.post-content li {
+  font-size: 1.15rem;
 }
 
 @media (max-width: 48rem) {
