@@ -1,6 +1,8 @@
 - remove "projects" app
 - organise css files by app
+- standardise theme colours
 - rethink photo sizing
 - customise 404/500 pages
 - add local development fixtures
 - add previous/next buttons to blog posts
+- add footnotes (sources: [1](https://github.com/torchbox/wagtail-footnotes), [2](https://www.mashandgravy.co.uk/blog/adding-footnotes-wagtail/))

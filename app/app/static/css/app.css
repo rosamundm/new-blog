@@ -177,7 +177,10 @@ footer {
   .post-title {
     font-size: 1.9rem;
   }
-  .post-content p {
+  .post-content p,
+  .post-content ul,
+  .post-content ol,
+  .post-content li {
     font-size: 1.05rem;
   }
 }
