@@ -164,16 +164,19 @@ footer {
   margin: 2rem 0;
 }
 
-.post-content .block-image_file_block {
+.post-content .block-image_file_block,
+.post-content .block-image_block {
   margin: 0;
 }
 
-.post-content .block-image_file_block figure.uploaded-image {
+.post-content .block-image_file_block figure.uploaded-image,
+.post-content .block-image_block figure.url-image {
   margin: 2rem 0;
   width: 100%;
 }
 
-.post-content .block-image_file_block figure.uploaded-image img {
+.post-content .block-image_file_block figure.uploaded-image img,
+.post-content .block-image_block figure.url-image img {
   width: 100%;
   max-width: 100%;
   height: auto;
