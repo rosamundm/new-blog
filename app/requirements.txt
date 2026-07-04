@@ -32,5 +32,5 @@ sqlparse==0.5.3
 telepath==0.3.1
 typing_extensions==4.13.0
 urllib3==2.3.0
-wagtail==7.0.2
+wagtail==7.0.4
 Willow==1.12.0

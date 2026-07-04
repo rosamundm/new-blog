@@ -164,6 +164,23 @@ footer {
   margin: 2rem 0;
 }
 
+.post-content .block-image_file_block {
+  margin: 0;
+}
+
+.post-content .block-image_file_block figure.uploaded-image {
+  margin: 2rem 0;
+  width: 100%;
+}
+
+.post-content .block-image_file_block figure.uploaded-image img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0;
+}
+
 .post-content ul,
 .post-content ol {
   font-size: 1.15rem;
