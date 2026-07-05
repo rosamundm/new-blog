@@ -22,4 +22,15 @@
     </div>
 </article>
 
+{% with previous_post=page.get_previous_post next_post=page.get_next_post %}
+  <div style="align-items: center; text-align: center; display: flex; flex-direction: column;">
+    {% if previous_post %}
+      <a style="font-size: 24px;" href="{% pageurl previous_post %}">← previous</a>
+    {% endif %}
+    {% if next_post %}
+      <a style="font-size: 24px;" href="{% pageurl next_post %}">next →</a>
+    {% endif %}
+  </div>
+{% endwith %}
+
 {% endblock %}

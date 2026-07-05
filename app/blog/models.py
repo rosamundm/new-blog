@@ -39,25 +39,43 @@ class BlogPage(Page):
         index.SearchField("body"),
     ]
 
+    def get_next_post(self):
+        return (
+            BlogPage.objects.live().public()
+            .sibling_of(self)
+            .filter(first_published_at__gt=self.first_published_at)
+            .order_by("first_published_at")
+            .first()
+        )
+
+    def get_previous_post(self):
+        return (
+            BlogPage.objects.live().public()
+            .sibling_of(self)
+            .filter(first_published_at__lt=self.first_published_at)
+            .order_by("-first_published_at")
+            .first()
+        )
+
 
 class BlogIndexPage(RoutablePageMixin, Page):
     """
-    Index page for blogs.
-    
-    Alters the page model's context to return the child page objects,
-    the BlogPage objects, so that it works as an index page.
+    Index page for blog posts.
 
-    RoutablePageMixin is used to allow for a custom sub-URL for any tag views.
+    Alters the page model's context to return the child page objects
+    so that it works as an index page.
     """
 
-    introduction = models.TextField(help_text="Text to describe the page", blank=True)
+    introduction = models.TextField(
+        help_text="Text to describe the page",
+        blank=True)
     image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
-        help_text="Landscape mode only; horizontal width between 1000px and 3000px.",
+        help_text="Landscape mode only; horizontal width between 1000-3000px.",
     )
 
     content_panels = Page.content_panels + [
