@@ -40,6 +40,9 @@ class BlogPage(Page):
     ]
 
     def get_next_post(self):
+        # guard for posts still in the draft stage
+        if not self.first_published_at:
+            return None
         return (
             BlogPage.objects.live().public()
             .sibling_of(self)
@@ -49,6 +52,8 @@ class BlogPage(Page):
         )
 
     def get_previous_post(self):
+        if not self.first_published_at:
+            return None
         return (
             BlogPage.objects.live().public()
             .sibling_of(self)
