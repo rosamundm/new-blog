@@ -34,7 +34,9 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "django.contrib.staticfiles",   
+    "django.contrib.staticfiles",
+
+    "wagtail_footnotes",
 ]
 
 MIDDLEWARE = [
@@ -165,7 +167,4 @@ WAGTAILDOCS_EXTENSIONS = ['csv', 'docx', 'key', 'odt', 'pdf', 'pptx', 'rtf', 'tx
 
 
 # Sentry
-sentry_sdk.init(
-    dsn=env("DSN"),
-    send_default_pii=True,
-)
+sentry_sdk.init(dsn=env("DSN"), send_default_pii=True,)
