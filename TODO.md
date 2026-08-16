@@ -1,7 +1,7 @@
-- remove "projects" app
-- organise css files by app
+- remove `projects` app
+- reorganise css files by app
 - standardise theme colours
 - customise 404/500 pages
 - add local development fixtures
-- add reading progress bar
+- add reading progress bar to blog posts
 - adjust mobile margins quote block
