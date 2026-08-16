@@ -20,6 +20,10 @@
     <div class="post-content">
         {% include_block page.body %}
     </div>
+
+    {% include "blocks/footnote_block.html" %}
+
+
 </article>
 
 {% with previous_post=page.get_previous_post next_post=page.get_next_post %}

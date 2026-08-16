@@ -11,6 +11,8 @@ from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images import get_image_model
 from wagtail.images.blocks import ImageChooserBlock
 
+from wagtail_footnotes.blocks import RichTextBlockWithFootnotes
+
 
 class CaptionedImageBlock(StructBlock):
     image = URLBlock(required=True)
@@ -88,7 +90,8 @@ class QuoteBlock(StructBlock):
 
 class BaseStreamBlock(StreamBlock):
     heading_block = HeadingBlock()
-    paragraph_block = RichTextBlock(
+    paragraph_block = RichTextBlockWithFootnotes(
+        features=["bold", "italic", "footnotes"],
         icon="pilcrow",
         template="blocks/paragraph_block.html",
         description="A rich text paragraph",
@@ -97,7 +100,7 @@ class BaseStreamBlock(StreamBlock):
     image_file_block = CaptionedImageFileBlock()
     quote_block = QuoteBlock()
     embed_block = EmbedBlock(
-        help_text="Insert an embed URL e.g https://www.youtube.com/watch?v=SGJFWirQ3ks",
+        help_text="Insert an embed URL",
         icon="media",
         template="blocks/embed_block.html",
         preview_template="base/preview/static_embed_block.html",

@@ -1,0 +1,32 @@
+{% load wagtailcore_tags i18n %}
+
+{% if page.footnotes_list %}
+    <div class="footnotes" id="footnotes">
+        <hr class="dashed" style="border-top: 3px #1a2d1c;">
+        <ul style="list-style: none;">
+            {% for footnote in page.footnotes_list %}
+                {% with footnote_index=forloop.counter %}
+                <li id="footnote-{{ footnote_index }}" style="font-size: 16px;">
+                    {% if footnote.references|length == 1 %}
+                        {# If there is only a single reference, link the return icon back to it #}
+                        <a href="#footnote-source-{{ footnote_index }}-{{ footnote.references.0 }}" aria-label="{% translate "Back to content" %}">
+                            {{ footnote_index }}
+                        </a>
+                    {% else %}
+                        {{ footnote_index }} 
+                        {% for reference_index in footnote.references %}
+                            {# If there are multiple references, generate unique links per reference #}
+                            <a href="#footnote-source-{{ footnote_index }}-{{ reference_index }}" aria-label="{% translate "Back to content" %}">
+                                <sup>{# Display a 1-indexed counter for each of the references to this footnote #}
+                                    {{ forloop.counter }}
+                                </sup>
+                            </a>
+                        {% endfor %}
+                    {% endif %}
+                    {{ footnote.text|richtext }}
+                </li>
+                {% endwith %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}

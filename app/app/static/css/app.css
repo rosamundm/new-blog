@@ -343,4 +343,10 @@ button:active {
   .navbar-menu li:last-child {
     border-bottom: none;
   }
+
+  .footnote-text li {
+    font-size: 10px;
+
+  }
+
 }

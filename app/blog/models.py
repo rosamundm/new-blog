@@ -1,6 +1,6 @@
 from django.db import models
 
-from wagtail.admin.panels import FieldPanel
+from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin
 from wagtail.fields import StreamField
 from wagtail.images import get_image_model_string
@@ -21,18 +21,22 @@ class BlogPage(Page):
         related_name="+",
     )
     body = StreamField(
-        BaseStreamBlock(features=["bold", "italic", ]),
+        BaseStreamBlock(features=["bold", "italic", "footnotes, "]),
         verbose_name="Page body",
         blank=True,
         use_json_field=True
     )
-    date_published = models.DateField("Date article published", blank=True, null=True)
-
+    date_published = models.DateField(
+        "Date article published",
+        blank=True,
+        null=True
+    )
     content_panels = Page.content_panels + [
         FieldPanel("introduction"),
         FieldPanel("image_url"),
         FieldPanel("body"),
         FieldPanel("date_published"),
+        InlinePanel("footnotes", label="Footnotes"),
     ]
 
     search_fields = Page.search_fields + [
