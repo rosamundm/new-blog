@@ -91,7 +91,17 @@ class QuoteBlock(StructBlock):
 class BaseStreamBlock(StreamBlock):
     heading_block = HeadingBlock()
     paragraph_block = RichTextBlockWithFootnotes(
-        features=["bold", "italic", "footnotes"],
+        features=[
+            "bold",
+            "italic",
+            "h2",
+            "h3",
+            "h4",
+            "ol",
+            "ul",
+            "link",
+            "footnotes",
+        ],
         icon="pilcrow",
         template="blocks/paragraph_block.html",
         description="A rich text paragraph",

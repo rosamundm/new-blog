@@ -21,7 +21,7 @@ class BlogPage(Page):
         related_name="+",
     )
     body = StreamField(
-        BaseStreamBlock(features=["bold", "italic", "footnotes, "]),
+        BaseStreamBlock(features=["bold", "italic", "footnotes", ]),
         verbose_name="Page body",
         blank=True,
         use_json_field=True
