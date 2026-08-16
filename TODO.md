@@ -3,6 +3,5 @@
 - standardise theme colours
 - customise 404/500 pages
 - add local development fixtures
-- add footnotes (sources: [1](https://github.com/torchbox/wagtail-footnotes), [2](https://www.mashandgravy.co.uk/blog/adding-footnotes-wagtail/))
 - add reading progress bar
 - adjust mobile margins quote block
