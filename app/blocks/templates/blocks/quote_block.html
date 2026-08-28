@@ -1,10 +1,12 @@
 {% load wagtailimages_tags %}
 
-<blockquote>
+<blockquote{% if self.attribute_name %} class="has-attribute"{% endif %}>
     <h4 class="pull-quote">
         {{ self.text }}
     </h4>
+    {% if self.attribute_name %}
     <p class="attribute-name">
-        {{ self.attribute_name}}
+        {{ self.attribute_name }}
     </p>
+    {% endif %}
 </blockquote>

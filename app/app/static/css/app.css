@@ -350,6 +350,7 @@ button:active {
 }
 
 /* quote block */
+
 .post-content .pull-quote {
   margin: 1rem 0 0;
   padding: 0.5rem 1rem;
@@ -394,6 +395,9 @@ button:active {
 
 .post-content blockquote {
   margin: 0;
+}
+
+.post-content blockquote.has-attribute {
   padding-bottom: 0.5rem;
 }
 
