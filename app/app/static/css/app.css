@@ -347,47 +347,64 @@ button:active {
   .footnote-text li {
     font-size: 10px;
   }
+}
 
   /* quote block */
-  .pull-quote {
-    border-left: 1px solid;
-    margin: 1rem 0;
-    padding: 0.5rem 1rem;
-    font-size: 18px;
+.post-content .pull-quote {
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  font-size: 18px;
+}
+
+.post-content .attribute-name {
+  display: block;
+  margin: 0;
+  padding: 0 1rem;
+  font-style: italic;
+  font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+  .post-content .pull-quote {
+    border-left-width: 0.25rem;
+    margin: 0.25 auto;
+    padding: 0.5rem 1.5rem;
+    max-width: 43.75rem;
+    font-size: 1.15rem;
   }
 
-  .pull-quote cite {
-    display: block;
-    margin-top: 0.5rem;
-    font-style: normal;
-    font-size: 0.8rem;
-    font-weight: 600;
-  }
-
-  .pull-quote-attribute {
-    font-size: 14px;
+  .post-content .attribute-name {
+    font-size: 1rem;
     font-style: italic;
-    padding: 0 2rem 0 2rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    max-width: 43.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .post-content .pull-quote {
+    padding: 0.5rem 2rem;
   }
 
-  @media (min-width: 768px) {
-    .pull-quote {
-        border-left-width: 4px;
-        margin: 2rem auto;
-        padding: 0.5rem 1.5rem;
-        max-width: 700px;
-        font-size: 1.15rem;
-    }
-
-    .pull-quote cite {
-        text-align: right;
-        font-size: 0.9rem;
-    }
+  .post-content .attribute-name {
+    padding: 0 2rem;
   }
+}
 
-  @media (min-width: 1024px) {
-    .pull-quote {
-        padding: 0.5rem 2rem;
-    }
-  }
+/* embed block */
+
+.post-content .post-embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 2rem 0;
+}
+
+.post-content .post-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
