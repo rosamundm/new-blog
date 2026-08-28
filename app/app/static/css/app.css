@@ -349,16 +349,16 @@ button:active {
   }
 }
 
-  /* quote block */
+/* quote block */
 .post-content .pull-quote {
-  margin: 1rem 0;
+  margin: 1rem 0 0;
   padding: 0.5rem 1rem;
   font-size: 18px;
 }
 
 .post-content .attribute-name {
   display: block;
-  margin: 0;
+  margin: 0 0 2.5rem;
   padding: 0 1rem;
   font-style: italic;
   font-size: 1rem;
@@ -367,7 +367,7 @@ button:active {
 @media (min-width: 768px) {
   .post-content .pull-quote {
     border-left-width: 0.25rem;
-    margin: 0.25 auto;
+    margin: 2rem auto 0; 
     padding: 0.5rem 1.5rem;
     max-width: 43.75rem;
     font-size: 1.15rem;
@@ -376,7 +376,7 @@ button:active {
   .post-content .attribute-name {
     font-size: 1rem;
     font-style: italic;
-    margin: 0 auto;
+    margin: 0 auto 2.5rem;
     padding: 0 1.5rem;
     max-width: 43.75rem;
   }
@@ -390,6 +390,11 @@ button:active {
   .post-content .attribute-name {
     padding: 0 2rem;
   }
+}
+
+.post-content blockquote {
+  margin: 0;
+  padding-bottom: 0.5rem;
 }
 
 /* embed block */
