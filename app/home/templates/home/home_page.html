@@ -5,18 +5,17 @@
 {% block body_class %}template-homepage{% endblock %}
 
 {% block content %}
+
 <div class="container my-5">
-  <div class="row align-items-center">
+  <div class="home-photo-text{% if page.image_file %} home-photo-text--has-image{% endif %}">
     {% if page.image_file %}
-    <div class="col-12 col-md-6 mb-4 mb-md-0 image-flex">
-        {% image page.image_file width-1200 as img %}
-        <img src="{{ img.url }}" alt="{{ img.alt }}" class="img-fluid rounded shadow">
-    </div>
-    {% endif %}
-    <div class="col-12 col-md-6">
-      <div class="homepage-textbox">
-        {{ page.body }}
+      <div class="home-photo-text__image">
+        {% image page.image_file width-800 as img %}
+        <img src="{{ img.url }}" alt="{{ img.alt }}" class="rounded shadow">
       </div>
+    {% endif %}
+    <div class="home-photo-text__body">
+      {{ page.body }}
     </div>
   </div>
 </div>

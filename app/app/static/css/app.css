@@ -49,6 +49,10 @@ footer {
   text-align: center
 }
 
+img {
+  border-radius: 0.5rem;
+}
+
 /* override bootstrap defaults */
 
 .image-flex {
@@ -60,6 +64,33 @@ footer {
 .image-flex img {
   max-width: 100%;
   height: auto;
+}
+
+/* homepage text-photo combo */
+
+.home-photo-text {
+  display: grid;
+  gap: 2rem;
+}
+
+.home-photo-text__image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 767.98px) {
+  .home-photo-text__image {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .home-photo-text--has-image {
+    grid-template-columns: 2fr 3fr;
+    align-items: center;
+  }
 }
 
 /* blog post index */
@@ -117,6 +148,14 @@ footer {
   font-size: 0.85rem;
   color: #2b4a2e;
   margin-bottom: 1rem;
+}
+
+.card__date {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  opacity: 0.6;
 }
 
 .card p {
