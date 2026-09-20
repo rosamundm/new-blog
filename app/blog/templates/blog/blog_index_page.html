@@ -9,16 +9,16 @@
 <div class="card-grid">
   {% for post in posts %}
     <article class="card">
-  {% if post.first_published_at %}
-    <time class="card__date" datetime="{{ post.first_published_at|date:'Y-m-d' }}">
-      {{ post.first_published_at|date:"j / m / Y" }}
-    </time>
-  {% endif %}
-  <h2>
-    <a href="{% pageurl post %}">{{ post.title }}</a>
-  </h2>
-  <p>{{ post.specific.introduction }}</p>
-</article>
+      {% if post.first_published_at %}
+        <time class="card__date" datetime="{{ post.first_published_at|date:'Y-m-d' }}">
+          {{ post.first_published_at|date:"j / m / Y" }}
+        </time>
+      {% endif %}
+      <h2>
+        <a href="{% pageurl post %}">{{ post.title }}</a>
+      </h2>
+      <p>{{ post.specific.introduction }}</p>
+    </article>
   {% endfor %}
 </div>
 
