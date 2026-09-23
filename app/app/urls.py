@@ -10,7 +10,12 @@ from wagtail_footnotes import urls as footnotes_urls
 
 from search import views as search_views
 
+from app.views import sesame_login, magic_login
+
+
 urlpatterns = [
+    path("admin/login/", magic_login, name="wagtailadmin_login"),
+    path("admin/sesame-login/", sesame_login, name="sesame_login"),
     path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
@@ -18,7 +23,7 @@ urlpatterns = [
 
     # path("sentry-debug/", trigger_error = lambda request: 1 / 0),
 
-    path("footnotes/", include(footnotes_urls))
+    path("footnotes/", include(footnotes_urls)),
 ]
 
 if settings.DEBUG:

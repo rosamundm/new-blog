@@ -1,0 +1,17 @@
+{% extends "wagtailadmin/login.html" %}
+{% load static %}
+
+{% block fields %}
+<li class="full">
+    <div class="field iconfield">
+        <label for="id_email">Email address</label>
+        <div class="input icon-user">
+            <input type="email" name="email" id="id_email" required autofocus>
+        </div>
+    </div>
+</li>
+{% endblock %}
+
+{% block submit_buttons %}
+<button type="submit" class="button primary default">Send magic link</button>
+{% endblock %}

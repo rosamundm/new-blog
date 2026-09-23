@@ -1,0 +1,15 @@
+{% extends "wagtailadmin/login.html" %}
+
+{% block fields %}
+<div style="text-align: center; padding: 20px;">
+    <p>✉️ Check your email for a login link</p>
+    <p style="color: #666; font-size: 14px;">
+        We sent a login link to <strong>{{ email }}</strong>
+    </p>
+    <p style="color: #999; font-size: 12px;">
+        The link expires in 10 minutes
+    </p>
+</div>
+{% endblock %}
+
+{% block submit_buttons %}{% endblock %}
