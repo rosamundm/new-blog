@@ -14,7 +14,12 @@ def sesame_login(request):
 
     if request.user.is_authenticated:
         return redirect("/admin/")
+
     user = authenticate(request)
+    token = request.GET.get('sesame')
+
+    if token:
+        user = authenticate(request, sesame=token)
 
     if user is not None:
         login(request, user, backend="sesame.backends.ModelBackend")

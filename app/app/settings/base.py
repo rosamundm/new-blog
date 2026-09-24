@@ -172,8 +172,8 @@ sentry_sdk.init(dsn=env("DSN"), send_default_pii=True,)
 
 # django-sesame
 AUTHENTICATION_BACKENDS = [
-    "django.contrib.auth.backends.ModelBackend",
     "sesame.backends.ModelBackend",
+    "django.contrib.auth.backends.ModelBackend",
 ]
 
 SESAME_MAX_AGE = 60 * 10
