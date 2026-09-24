@@ -1,5 +1,15 @@
 {% extends "wagtailadmin/login.html" %}
 
+{% block above_login %}
+{% if error %}
+<div class="messages">
+    <ul>
+        <li class="error p-2">{{ error }}</li>
+    </ul>
+</div>
+{% endif %}
+{% endblock %}
+
 {% block fields %}
 <li class="full">
     <div class="field iconfield">

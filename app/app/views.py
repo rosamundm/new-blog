@@ -13,12 +13,8 @@ class EmailPasswordForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
 
 
-def confirm_magic_link_sent(request, email):
-    return render(
-        request,
-        "wagtailadmin/login_sent.html",
-        {"email": email}
-    )
+def magic_link_sent(request, email):
+    return render(request, "wagtailadmin/login_sent.html", {"email": email})
 
 
 def invalid_credentials_error(request):
@@ -38,34 +34,36 @@ def magic_login(request):
 
     if request.method == "POST":
         form = EmailPasswordForm(request.POST)
-        if form.is_valid():
-            email = form.cleaned_data["email"]
-            password = form.cleaned_data["password"]
 
-            # step 1
-            user = authenticate(request, username=email, password=password)
+        if not form.is_valid():
+            return invalid_credentials_error(request)
 
-            # step 2
-            try:
-                user = User.objects.get(email=email, is_staff=True)
-                if user.check_password(password) and user.is_staff:
-                    token = create_token(user)
-                    token_link = f"/admin/sesame-login/?sesame={token}"
-                    magic_link = request.build_absolute_uri(token_link)
+        # step 1
+        email = form.cleaned_data["email"]
+        password = form.cleaned_data["password"]
+        user = authenticate(request, username=email, password=password)
 
-                    send_mail(
-                        "Your Wagtail admin login link",
-                        f"Click here to log in: {magic_link}",
-                        settings.DEFAULT_FROM_EMAIL,
-                        [email],
-                    )
+        # step 2
+        try:
+            user = User.objects.get(email=email, is_staff=True)
+            if user.check_password(password) and user.is_staff:
+                token = create_token(user)
+                token_link = f"/admin/sesame-login/?sesame={token}"
+                magic_link = request.build_absolute_uri(token_link)
 
-                    return confirm_magic_link_sent(request, email)
+                send_mail(
+                    "Your Wagtail admin login link",
+                    f"Click here to log in: {magic_link}",
+                    settings.DEFAULT_FROM_EMAIL,
+                    [email],
+                )
 
-                return invalid_credentials_error(request)
+                return magic_link_sent(request, email)
 
-            except User.DoesNotExist:
-                return invalid_credentials_error(request)
+            return invalid_credentials_error(request)
+
+        except User.DoesNotExist:
+            return invalid_credentials_error(request)
 
     return render(request, "wagtailadmin/login.html")
 
