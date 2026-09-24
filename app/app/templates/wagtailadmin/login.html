@@ -1,5 +1,4 @@
 {% extends "wagtailadmin/login.html" %}
-{% load static %}
 
 {% block fields %}
 <li class="full">
@@ -10,8 +9,16 @@
         </div>
     </div>
 </li>
+<li class="full">
+    <div class="field iconfield">
+        <label for="id_password">Password</label>
+        <div class="input icon-password">
+            <input type="password" name="password" id="id_password" required>
+        </div>
+    </div>
+</li>
 {% endblock %}
 
 {% block submit_buttons %}
-<button type="submit" class="button primary default">Send magic link</button>
+<button type="submit" class="button primary default">Send verification link</button>
 {% endblock %}
