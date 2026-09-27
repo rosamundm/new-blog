@@ -7,6 +7,7 @@ body {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1.15rem;  /* 16px */
   background: #d2e5d4;
+  background-image: linear-gradient(-90deg, #d2e5d4, #f2ffed);
   color: #1a2d1c;
   line-height: 1.8;
 }
