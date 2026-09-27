@@ -267,7 +267,7 @@ img {
 
 .navbar {
   background-color: #d2e5d4;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -284,7 +284,13 @@ img {
 }
 
 .navbar-header {
-  font-size: 3rem;
+  font-size: 2rem;
+  line-height: 1;
+  margin: 0;
+  display: flex;
+  position: relative;
+  align-items: center;
+  top: -0.5rem;
 }
 
 @media (max-width: 767px) {
@@ -302,6 +308,9 @@ img {
 }
 
 .navbar-menu a {
+  display: flex;
+  align-items: center;
+  line-height: 1;
   text-decoration: none;
   color: #000;
   transition: color 0.3s ease;
