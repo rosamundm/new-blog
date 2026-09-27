@@ -73,10 +73,28 @@ img {
   gap: 2rem;
 }
 
+.home-photo-text__image {
+  position: relative;
+}
+
 .home-photo-text__image img {
   display: block;
   width: 100%;
   height: auto;
+}
+
+.home-photo-text__image img.home-photo-text__image--hover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.home-photo-text__image:hover img.home-photo-text__image--hover {
+  opacity: 1;
 }
 
 @media (max-width: 767.98px) {

@@ -5,13 +5,17 @@
 {% block body_class %}template-homepage{% endblock %}
 
 {% block content %}
-
 <div class="container my-5">
   <div class="home-photo-text{% if page.image_file %} home-photo-text--has-image{% endif %}">
     {% if page.image_file %}
       <div class="home-photo-text__image">
         {% image page.image_file width-800 as img %}
         <img src="{{ img.url }}" alt="{{ img.alt }}" class="rounded shadow">
+
+        {% if page.image_file_hover %}
+          {% image page.image_file_hover width-800 as img_hover %}
+          <img src="{{ img_hover.url }}" alt="{{ img_hover.alt }}" class="rounded shadow home-photo-text__image--hover">
+        {% endif %}
       </div>
     {% endif %}
     <div class="home-photo-text__body">
