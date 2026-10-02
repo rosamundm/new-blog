@@ -11,11 +11,19 @@ from blocks.models import BaseStreamBlock
 
 class HomePage(RoutablePageMixin, Page):
     image_file = models.ForeignKey(
-        get_image_model_string(),  # allows custom Wagtail image model
+        get_image_model_string(),
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name="+",  # no reverse relation needed
+        related_name="+",
+    )
+    image_file_hover = models.ForeignKey(
+        get_image_model_string(),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        help_text="Optional second image that shows on hovering over the first"
     )
     body = StreamField(
         BaseStreamBlock(features=["bold", "italic", ]),
@@ -23,4 +31,8 @@ class HomePage(RoutablePageMixin, Page):
         blank=True,
         use_json_field=True
     )
-    content_panels = Page.content_panels + [FieldPanel("body"), FieldPanel("image_file"),]
+    content_panels = Page.content_panels + [
+        FieldPanel("body"),
+        FieldPanel("image_file"),
+        FieldPanel("image_file_hover"),
+    ]
