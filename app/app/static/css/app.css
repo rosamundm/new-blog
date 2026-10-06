@@ -484,3 +484,16 @@ button:active {
   height: 100%;
   border: 0;
 }
+
+/* blog post reading progress bar */
+
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 0.25rem;
+  width: 0%;
+  background: #1a2d1c;
+  z-index: 200;
+  transition: width 0.1s ease-out;
+}

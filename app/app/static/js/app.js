@@ -33,3 +33,21 @@ window.addEventListener("scroll", () => {
     lastScrollTop = Math.max(0, currentScroll);
   }
 });
+
+
+/* blog post reading progress bar */
+
+document.addEventListener("DOMContentLoaded", function () {
+  const progressBar = document.getElementById("progress-bar");
+  if (!progressBar) return;
+
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = progress + "%";
+  }
+
+  window.addEventListener("scroll", updateProgress, { passive: true });
+  updateProgress();
+});
