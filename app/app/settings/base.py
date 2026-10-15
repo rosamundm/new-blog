@@ -203,3 +203,8 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get("MAILJET_API_KEY")
 EMAIL_HOST_PASSWORD = os.environ.get("MAILJET_SECRET_KEY")
 DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL")
+
+# secret and specific to prevent phishing ;)
+FROM_NAME = os.environ.get("FROM_NAME")
+EMAIL_SUBJECT = os.environ.get("EMAIL_SUBJECT")
+EMAIL_BODY = os.environ.get("EMAIL_BODY")

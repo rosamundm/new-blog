@@ -1,9 +1,9 @@
 from django import forms
 from django.contrib.auth import get_user_model, login
 from django.shortcuts import redirect, render
-from django.core.mail import send_mail
-from django.conf import settings
 from sesame.utils import authenticate, create_token
+
+from app.send_email import send_email
 
 User = get_user_model()
 
@@ -63,16 +63,11 @@ def magic_login(request):
                 token_link = f"/admin/sesame-login/?sesame={token}"
                 magic_link = request.build_absolute_uri(token_link)
 
-                # email isn't required when creating a user; check one exists!
+                # email isn't required when creating a user; check it exists!
                 if not (email := user.email):
                     return no_email_error(request)
 
-                send_mail(
-                    "Your Wagtail admin login link",
-                    f"Click here to log in: {magic_link}",
-                    settings.DEFAULT_FROM_EMAIL,
-                    [email],
-                )
+                send_email(email, magic_link)
 
                 return magic_link_sent(request, email)
 
