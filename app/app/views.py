@@ -60,6 +60,7 @@ def magic_login(request):
             user = User.objects.get(username=username, is_staff=True)
             if user.check_password(password) and user.is_staff:
                 token = create_token(user)
+                # todo: add path to env vars
                 token_link = f"/admin/sesame-login/?sesame={token}"
                 magic_link = request.build_absolute_uri(token_link)
 
@@ -67,6 +68,8 @@ def magic_login(request):
                 if not (email := user.email):
                     return no_email_error(request)
 
+                # todo: add cookie
+   
                 send_email(email, magic_link)
 
                 return magic_link_sent(request, email)
@@ -83,6 +86,8 @@ def sesame_login(request):
     """
     Authenticate with token and redirect to admin
     """
+
+    # todo: if cookie...
 
     if request.user.is_authenticated:
         return redirect("/admin/")
