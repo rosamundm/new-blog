@@ -51,3 +51,32 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("scroll", updateProgress, { passive: true });
   updateProgress();
 });
+
+
+/* Tufte-style footnotes */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const seen = new Set();
+
+  // todo: remove link when in sidenote mode 
+  document.querySelectorAll('.post-content a[href^="#footnote-"]').forEach((ref) => {
+    const id = ref.getAttribute("href");  // e.g. "#footnote-3"
+    if (seen.has(id)) return;  // make sure sidenote doesn't repeat
+    const text = document.querySelector(id + " .footnote-text");
+    if (!text) return;
+    seen.add(id);
+
+    const side = document.createElement("span");
+    side.className = "sidenote";
+
+    const num = document.createElement("span");
+    num.className = "sidenote-number";
+    num.textContent = id.replace("#footnote-", "") + ". ";
+
+    side.append(num);
+    side.insertAdjacentHTML("beforeend", text.innerHTML);
+    ref.after(side);
+  });
+
+  if (seen.size) document.body.classList.add("has-sidenotes");
+});
