@@ -556,5 +556,17 @@ button:active {
     color: #3C6840;
   }
 
-  .has-sidenotes .footnotes { display: none; }
+  .has-sidenotes .footnotes {
+    display: none;
+  }
+
+  /* suppress link styling when in sidenote mode */
+  @media (min-width: 1000px) {
+    .has-sidenotes .post-content a[href^="#footnote-"] {
+      color: inherit !important;
+      text-decoration: none !important;
+      cursor: default;
+      pointer-events: none;
+    }
+  }
 }

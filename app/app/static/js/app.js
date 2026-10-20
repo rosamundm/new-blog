@@ -58,7 +58,6 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", () => {
   const seen = new Set();
 
-  // todo: remove link when in sidenote mode 
   document.querySelectorAll('.post-content a[href^="#footnote-"]').forEach((ref) => {
     const id = ref.getAttribute("href");  // e.g. "#footnote-3"
     if (seen.has(id)) return;  // make sure sidenote doesn't repeat
