@@ -11,7 +11,7 @@
     <article class="card">
       {% if post.first_published_at %}
         <time class="card__date" datetime="{{ post.first_published_at|date:'Y-m-d' }}">
-          {{ post.first_published_at|date:"j / m / Y" }}
+          {{ post.first_published_at|date:"d / m / Y" }}
         </time>
       {% endif %}
       <h2>
