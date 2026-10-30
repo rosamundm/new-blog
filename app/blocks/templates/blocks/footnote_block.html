@@ -6,24 +6,26 @@
         <ul style="list-style: none;">
             {% for footnote in page.footnotes_list %}
                 {% with footnote_index=forloop.counter %}
-                <li id="footnote-{{ footnote_index }}" style="font-size: 16px;">
+                <li id="footnote-{{ footnote_index }}" class="footnote-item">
                     {% if footnote.references|length == 1 %}
-                        {# If there is only a single reference, link the return icon back to it #}
-                        <a href="#footnote-source-{{ footnote_index }}-{{ footnote.references.0 }}" aria-label="{% translate "Back to content" %}">
+                        {# link the note back to the text #}
+                        <a href="#footnote-source-{{ footnote_index }}-{{ footnote.references.0 }}">
                             {{ footnote_index }}
                         </a>
                     {% else %}
                         {{ footnote_index }} 
                         {% for reference_index in footnote.references %}
-                            {# If there are multiple references, generate unique links per reference #}
-                            <a href="#footnote-source-{{ footnote_index }}-{{ reference_index }}" aria-label="{% translate "Back to content" %}">
-                                <sup>{# Display a 1-indexed counter for each of the references to this footnote #}
+                            {# if there are multiple references, generate unique links per reference #}
+                            <a href="#footnote-source-{{ footnote_index }}-{{ reference_index }}">
+                                <sup>{# display a 1-indexed counter for each reference to this footnote #}
                                     {{ forloop.counter }}
                                 </sup>
                             </a>
                         {% endfor %}
                     {% endif %}
-                    {{ footnote.text|richtext }}
+                    <div class="footnote-text">
+                        {{ footnote.text|richtext }}
+                    </div>
                 </li>
                 {% endwith %}
             {% endfor %}

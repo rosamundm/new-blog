@@ -17,7 +17,7 @@ urlpatterns = [
     path("admin/login/", magic_login, name="wagtailadmin_login"),
     path("admin/sesame-login/", sesame_login, name="sesame_login"),
     path("django-admin/", admin.site.urls),
-    path("admin/", include(wagtailadmin_urls)),
+    path(settings.ADMIN_SUFFIX, include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("search/", search_views.search, name="search"),
 

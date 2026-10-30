@@ -1,7 +1,7 @@
 from .base import *
 
 
-# don't worry; these are all only used locally
+# don't worry; these are all only used locally, not on the prod system.
 DEBUG = True
 SECRET_KEY = "django-insecure-#onrf*d%58loz+)io*t)ka1+0oy9rzamuv=y970)0wkq=1)&7g"
 ALLOWED_HOSTS = ["*"]

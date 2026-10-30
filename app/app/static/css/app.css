@@ -412,7 +412,7 @@ button:active {
   }
 
   .footnote-text li {
-    font-size: 10px;
+    font-size: 8px;
   }
 }
 
@@ -483,4 +483,90 @@ button:active {
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+/* blog post reading progress bar */
+
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 0.25rem;
+  width: 0%;
+  background: #1a2d1c;
+  z-index: 200;
+  transition: width 0.1s ease-out;
+}
+
+/* customise footnotes */
+
+:root {
+  --note-size: 0.8rem;
+  --note-leading: 1.55;
+  --note-gap: 2.5rem;
+  --note-width: 14rem;
+  --note-spacing: 1rem;
+}
+
+/* wider screens  */
+@media (min-width: 1400px) {
+  :root {
+    --note-width: 16rem;
+    --note-gap: 3rem;
+  }
+}
+
+/* bottom footnotes (all screen sizes) */
+.footnote-item {
+  margin-bottom: var(--note-spacing);
+}
+
+.footnote-item,
+.footnote-item * {
+  font-size: var(--note-size) !important;
+  line-height: var(--note-leading) !important;
+}
+
+/* sidenotes */
+.sidenote { display: none; }
+
+.has-sidenotes .sidenote,
+.has-sidenotes .sidenote * {
+  font-size: var(--note-size) !important;
+  line-height: var(--note-leading) !important;
+}
+
+.sidenote p { margin: 0 0 0.5em; }
+.sidenote p:last-child { margin-bottom: 0; }
+.sidenote-number { font-weight: bold; }
+
+@media (min-width: 1000px) {
+  .has-sidenotes .post-content {
+    padding-right: calc(var(--note-width) + var(--note-gap));
+  }
+
+  .has-sidenotes .sidenote {
+    display: block;
+    float: right;
+    clear: right;
+    width: var(--note-width);
+    margin-right: calc(-1 * (var(--note-width) + var(--note-gap)));
+    margin-top: 0.25rem;
+    margin-bottom: var(--note-spacing);
+    color: #3C6840;
+  }
+
+  .has-sidenotes .footnotes {
+    display: none;
+  }
+
+  /* suppress link styling when in sidenote mode */
+  @media (min-width: 1000px) {
+    .has-sidenotes .post-content a[href^="#footnote-"] {
+      color: inherit !important;
+      text-decoration: none !important;
+      cursor: default;
+      pointer-events: none;
+    }
+  }
 }
