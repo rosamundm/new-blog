@@ -28,9 +28,6 @@ urlpatterns = [
 
     path("footnotes/", include(footnotes_urls)),
 
-    path("accounts/", include("allauth.urls")),
-    path("accounts/", include("allauth.mfa.urls")),
-
     # Sentry tripwire:
     # path("sentry-debug/", trigger_error = lambda request: 1 / 0),
 ]

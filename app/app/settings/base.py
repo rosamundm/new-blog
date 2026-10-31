@@ -180,7 +180,7 @@ WAGTAILSEARCH_BACKENDS = {
 # Base URL to use when referring to full URLs within the Wagtail admin
 # backend - e.g. in notification emails. Don't include '/admin' or a
 # trailing slash
-WAGTAILADMIN_BASE_URL = ""
+WAGTAILADMIN_BASE_URL = env("BASE_URL")
 
 # Allowed file extensions for documents in the document library.
 # This can be omitted to allow all files, but note that this may present
@@ -202,7 +202,7 @@ ACCOUNT_ALLOW_REGISTRATION = False
 ACCOUNT_LOGIN_METHODS = {"username"}
 MFA_SUPPORTED_TYPES = ["totp", "recovery_codes"]
 LOGIN_URL = f"/{ADMIN_SUFFIX}/login/"
-LOGIN_REDIRECT_URL = ADMIN_SUFFIX
+LOGIN_REDIRECT_URL = "/" + ADMIN_SUFFIX
 
 """
 Step 5: Enable 2FA for your user
