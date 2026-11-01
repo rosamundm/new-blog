@@ -22,4 +22,4 @@ Example:
 
 ## Credit
 
-Thanks to [Wagtail Bakery](https://github.com/wagtail/bakerydemo) for providing some of the basic elements to get started with.
+Thanks to [Wagtail Bakery](https://github.com/wagtail/bakerydemo) for providing some of the basic block/model elements.
