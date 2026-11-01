@@ -156,13 +156,15 @@ STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 
-ADMIN_SUFFIX = env("ADMIN_SUFFIX")
-
 """
 Wagtail settings
 """
 
 WAGTAIL_SITE_NAME = "app"
+
+ADMIN_SUFFIX = env("ADMIN_SUFFIX")
+AUTH_SUFFIX = env("AUTH_SUFFIX")
+
 WAGTAIL_AUTO_UPDATE_PREVIEW_INTERVAL = 0  # see 6.3 release notes
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10_000  # see 6.4 release notes
 
@@ -198,5 +200,5 @@ AUTHENTICATION_BACKENDS = [
 ACCOUNT_ALLOW_REGISTRATION = False
 ACCOUNT_LOGIN_METHODS = {"username"}
 MFA_SUPPORTED_TYPES = ["totp", "recovery_codes"]
-LOGIN_URL = f"/{ADMIN_SUFFIX}/login/"
-LOGIN_REDIRECT_URL = "/" + ADMIN_SUFFIX
+LOGIN_URL = f"/{AUTH_SUFFIX}login/"
+LOGIN_REDIRECT_URL = f"/{ADMIN_SUFFIX}"  # generic Wagtail admin

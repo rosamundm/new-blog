@@ -1,7 +1,8 @@
 from django.conf import settings
-from django.contrib import admin
 from django.urls import include, path
 from django.views.generic import RedirectView
+
+from search import views as search_views
 
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail import urls as wagtail_urls
@@ -9,23 +10,26 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 from wagtail_footnotes import urls as footnotes_urls
 
-from search import views as search_views
+ADMIN_SUFFIX = settings.ADMIN_SUFFIX
+AUTH_SUFFIX = settings.AUTH_SUFFIX
 
 urlpatterns = [
-    path("django-admin/", admin.site.urls),
-
-    # AllAuth
+    # redirect Wagtail login page to AllAuth (must come first):
     path(
-        f"{settings.ADMIN_SUFFIX}login/",
+        f"{ADMIN_SUFFIX}login/",
         RedirectView.as_view(pattern_name="account_login", query_string=True),
     ),
-    path("accounts/", include("allauth.urls")),
-    path("accounts/", include("allauth.mfa.urls")),
+    # AllAuth login, logout, account pages:
+    path(f"{AUTH_SUFFIX}", include("allauth.urls")),
+    # AllAuth 2FA pages:
+    path(f"{AUTH_SUFFIX}", include("allauth.mfa.urls")),
+    # Wagtail admin:
+    path(f"{ADMIN_SUFFIX}", include(wagtailadmin_urls)),
 
-    path(settings.ADMIN_SUFFIX, include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("search/", search_views.search, name="search"),
 
+    # Wagtail footnotes:
     path("footnotes/", include(footnotes_urls)),
 
     # Sentry tripwire:

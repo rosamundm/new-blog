@@ -6,17 +6,19 @@ from django.urls import reverse
 
 from allauth.mfa.models import Authenticator
 
-# setup
+# route setup
+LOGIN = reverse("account_login")
+MFA_AUTH = reverse("mfa_authenticate")
+ADMIN_HOME = reverse("wagtailadmin_home")
 
-LOGIN = reverse("account_login")  # /accounts/login/
-MFA_AUTH = reverse("mfa_authenticate")  # /accounts/authenticate/
-
+# user setup
 User = get_user_model()
-
 PASSWORD = "correct-horse-battery-staple"
 STAFF_USER = {"username": "admin", "email": "admin@example.com"}
 NON_STAFF_USER = {"username": "member", "email": "member@example.com"}
 
+
+# fixtures
 
 def final_url(response):
     """
@@ -85,7 +87,7 @@ def test_password_and_valid_code_reaches_admin(client, password, current_totp):
     client.post(LOGIN, {"login": "admin", "password": password})
     response = client.post(MFA_AUTH, {"code": current_totp()})
     assert response.status_code == 302
-    assert response["Location"] == "/admin/"
+    assert response["Location"] == ADMIN_HOME
     assert response.wsgi_request.user.is_authenticated
 
 
