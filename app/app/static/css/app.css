@@ -498,7 +498,10 @@ button:active {
   transition: width 0.1s ease-out;
 }
 
-/* customise footnotes */
+/*
+Tufte-style footnotes:
+on larger screens, footnotes transform into sidenotes
+*/
 
 :root {
   --note-size: 0.8rem;
@@ -508,15 +511,12 @@ button:active {
   --note-spacing: 1rem;
 }
 
-/* wider screens  */
-@media (min-width: 1400px) {
-  :root {
-    --note-width: 16rem;
-    --note-gap: 3rem;
-  }
+/* stop sidenote overhang from causing a horizontal scrollbar */
+body { 
+  overflow-x: clip; 
 }
 
-/* bottom footnotes (all screen sizes) */
+/* bottom footnotes */
 .footnote-item {
   margin-bottom: var(--note-spacing);
 }
@@ -540,15 +540,31 @@ button:active {
 .sidenote p:last-child { margin-bottom: 0; }
 .sidenote-number { font-weight: bold; }
 
-@media (min-width: 1000px) {
-  .has-sidenotes .post-content {
-    padding-right: calc(var(--note-width) + var(--note-gap));
+/*
+large screens (e.g. monitor):
+- widen the sidenote
+- increase the gap between sidenote and post content
+*/
+@media (min-width: 1400px) {
+  :root {
+    --note-width: 16rem;
+    --note-gap: 3rem;
   }
+}
 
+/*
+sidenote layout (1200px and up):
+- float notes into the right-hand margin,
+- hide the bottom footnote list
+- size the article adequately to leave space
+
+always keep min-width in sync with SIDENOTE_QUERY in app.js
+*/
+@media (min-width: 1200px) {
   .has-sidenotes .sidenote {
     display: block;
     float: right;
-    clear: right;
+    clear: right;  /* stack notes instead of overlapping */
     width: var(--note-width);
     margin-right: calc(-1 * (var(--note-width) + var(--note-gap)));
     margin-top: 0.25rem;
@@ -560,13 +576,21 @@ button:active {
     display: none;
   }
 
-  /* suppress link styling when in sidenote mode */
-  @media (min-width: 1000px) {
-    .has-sidenotes .post-content a[href^="#footnote-"] {
-      color: inherit !important;
-      text-decoration: none !important;
-      cursor: default;
-      pointer-events: none;
-    }
+   /* widest column still leaving room for sidenotes, capped at 52rem for large screens */
+  .has-sidenotes article {
+    width: min(
+      52rem,
+      calc(100vw - 2 * (var(--note-width) + var(--note-gap)) - 2rem)
+    );
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
   }
+}
+
+/* suppress link styling when in sidenote mode */
+.has-sidenotes .footnote-ref-static {
+  color: inherit !important;
+  text-decoration: none !important;
+  cursor: default;
 }
