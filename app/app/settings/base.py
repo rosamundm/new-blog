@@ -127,11 +127,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
 LANGUAGE_CODE = "en-us"
-
 TIME_ZONE = "UTC"
-
 USE_I18N = True
-
 USE_TZ = True
 
 
@@ -192,7 +189,7 @@ WAGTAILDOCS_EXTENSIONS = ["csv", "docx", "pdf", ]
 sentry_sdk.init(dsn=env("DSN"), send_default_pii=True,)
 
 
-# allauth
+# AllAuth
 SITE_ID = 1
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
@@ -203,20 +200,3 @@ ACCOUNT_LOGIN_METHODS = {"username"}
 MFA_SUPPORTED_TYPES = ["totp", "recovery_codes"]
 LOGIN_URL = f"/{ADMIN_SUFFIX}/login/"
 LOGIN_REDIRECT_URL = "/" + ADMIN_SUFFIX
-
-"""
-Step 5: Enable 2FA for your user
-Log in through LOGIN_URL
-Go to /accounts/2fa/ (or the security section of allauth’s account pages)
-Scan the QR code with an authenticator app and save the recovery codes somewhere safe
-
-Once that works, you’ll have a standard, tested 2FA flow with no custom views to maintain.
-
-Test: Visit /accounts/login/, log in with your username and password,
-then go to /accounts/2fa/ to set up the authenticator app.
-Also check that django.contrib.sites runs its migrations. It’s needed by allauth,
-and migrate will create the default site.
-
-If check or migrate fails, paste the first error line and we’ll fix that one.
-
-"""

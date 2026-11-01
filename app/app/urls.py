@@ -14,7 +14,7 @@ from search import views as search_views
 urlpatterns = [
     path("django-admin/", admin.site.urls),
 
-    # allauth
+    # AllAuth
     path(
         f"{settings.ADMIN_SUFFIX}login/",
         RedirectView.as_view(pattern_name="account_login", query_string=True),
