@@ -594,3 +594,12 @@ always keep min-width in sync with SIDENOTE_QUERY in app.js
   text-decoration: none !important;
   cursor: default;
 }
+
+/* stop the superscript from stretching the line height */
+.post-content a[href^="#footnote-"] sup,
+.post-content a.footnote-ref-static sup {
+  line-height: 0;
+  vertical-align: baseline;
+  position: relative;
+  top: -0.45em;
+}
