@@ -18,8 +18,9 @@ PASSWORD = "correct-horse-battery-staple"
 STAFF_USER = {"username": "admin", "email": "admin@example.com"}
 NON_STAFF_USER = {"username": "member", "email": "member@example.com"}
 
-
-# fixtures
+############
+# fixtures #
+############
 
 
 def final_url(response):
@@ -87,8 +88,9 @@ def clear_cache():
     cache.clear()
 
 
-# tests
-
+#########
+# tests #
+#########
 
 @pytest.mark.django_db
 @pytest.mark.usefixtures("staff_user_with_totp")
@@ -115,7 +117,7 @@ def test_incorrect_totp_does_not_log_in(client, password):
     client.post(LOGIN, {"login": "admin", "password": password})
     response = client.post(MFA_AUTH, {"code": "000000"})
 
-    # form is re-rendered, not redirected
+    # 200 = form is re-rendered, not redirected
     assert response.status_code == 200
     assert "_auth_user_id" not in client.session
 
@@ -146,7 +148,10 @@ def test_unknown_user_same_response_as_wrong_password(client):
     """
 
     wrong_pw = client.post(LOGIN, {"login": "admin", "password": "wrong-pw"})
-    non_existent_user = client.post(LOGIN, {"login": "ghost", "password": "blah"})
+    non_existent_user = client.post(
+        LOGIN,
+        {"login": "ghost", "password": "blah"}
+    )
 
     assert wrong_pw.status_code == non_existent_user.status_code == 200
     assert (
