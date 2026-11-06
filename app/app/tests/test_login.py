@@ -2,6 +2,7 @@ import pyotp
 import pytest
 
 from django.contrib.auth import get_user_model
+from django.core.cache import cache
 from django.urls import reverse
 
 from allauth.mfa.models import Authenticator
@@ -19,6 +20,7 @@ NON_STAFF_USER = {"username": "member", "email": "member@example.com"}
 
 
 # fixtures
+
 
 def final_url(response):
     """
@@ -76,10 +78,17 @@ def staff_user_with_totp(staff_user, totp_secret):
 def current_totp(totp_secret):
     def _code():
         return pyotp.TOTP(totp_secret).now()
+
     return _code
 
 
+@pytest.fixture(autouse=True)
+def clear_cache():
+    cache.clear()
+
+
 # tests
+
 
 @pytest.mark.django_db
 @pytest.mark.usefixtures("staff_user_with_totp")
@@ -98,3 +107,61 @@ def test_password_alone_does_not_reach_admin(client, password):
     assert response.status_code == 302
     assert response["Location"] == MFA_AUTH
     assert "_auth_user_id" not in client.session
+
+
+@pytest.mark.django_db
+@pytest.mark.usefixtures("staff_user_with_totp")
+def test_incorrect_totp_does_not_log_in(client, password):
+    client.post(LOGIN, {"login": "admin", "password": password})
+    response = client.post(MFA_AUTH, {"code": "000000"})
+
+    # form is re-rendered, not redirected
+    assert response.status_code == 200
+    assert "_auth_user_id" not in client.session
+
+
+@pytest.mark.django_db
+@pytest.mark.usefixtures("staff_user_with_totp")
+def test_reused_totp_is_rejected(client, password, current_totp):
+    code = current_totp()
+
+    client.post(LOGIN, {"login": "admin", "password": password})
+    first = client.post(MFA_AUTH, {"code": code})
+    assert first.status_code == 302
+
+    client.logout()
+    client.post(LOGIN, {"login": "admin", "password": password})
+    second = client.post(MFA_AUTH, {"code": code})
+
+    assert second.status_code == 200
+    assert "_auth_user_id" not in client.session
+
+
+@pytest.mark.django_db
+@pytest.mark.usefixtures("staff_user_with_totp")
+@pytest.mark.usefixtures("password")
+def test_unknown_user_same_response_as_wrong_password(client):
+    """
+    Prevent username enumeration
+    """
+
+    wrong_pw = client.post(LOGIN, {"login": "admin", "password": "wrong-pw"})
+    non_existent_user = client.post(LOGIN, {"login": "ghost", "password": "blah"})
+
+    assert wrong_pw.status_code == non_existent_user.status_code == 200
+    assert (
+        wrong_pw.context["form"].errors.keys()
+        == non_existent_user.context["form"].errors.keys()
+    )
+
+
+@pytest.mark.django_db
+@pytest.mark.usefixtures("staff_user_with_totp")
+def test_repeated_wrong_codes_are_rate_limited(client, password):
+    cache.clear()
+    client.post(LOGIN, {"login": "admin", "password": password})
+
+    for _ in range(10):
+        response = client.post(MFA_AUTH, {"code": "000000"})
+
+    assert "too many" in response.content.decode().lower()

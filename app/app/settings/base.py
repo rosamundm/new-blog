@@ -190,15 +190,25 @@ WAGTAILDOCS_EXTENSIONS = ["csv", "docx", "pdf", ]
 # Sentry
 sentry_sdk.init(dsn=env("DSN"), send_default_pii=True,)
 
+###########
+# AllAuth #
+###########
 
-# AllAuth
 SITE_ID = 1
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
+ACCOUNT_RATE_LIMITS = {"login_failed": "5/m"}
 ACCOUNT_ALLOW_REGISTRATION = False
 ACCOUNT_LOGIN_METHODS = {"username"}
 MFA_SUPPORTED_TYPES = ["totp", "recovery_codes"]
 LOGIN_URL = f"/{AUTH_SUFFIX}login/"
-LOGIN_REDIRECT_URL = f"/{ADMIN_SUFFIX}"  # generic Wagtail admin
+LOGIN_REDIRECT_URL = f"/{ADMIN_SUFFIX}"
+# created with ./manage.py createcachetable:
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.db.DatabaseCache",
+        "LOCATION": "allauth_cache",
+    }
+}
