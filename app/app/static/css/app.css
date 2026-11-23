@@ -580,7 +580,7 @@ always keep min-width in sync with SIDENOTE_QUERY in app.js
   .has-sidenotes article {
     width: min(
       52rem,
-      calc(100vw - 2 * (var(--note-width) + var(--note-gap)) - 2rem)
+      calc(100vw - 2 * (var(--note-width) + 2 * var(--note-gap)) - 1rem)
     );
     max-width: none;
     margin-left: auto;
