@@ -4,7 +4,7 @@
 
 body {
   margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: Palatino, "Palatino Linotype", serif;
   font-size: 1.15rem;  /* 16px */
   background: #d2e5d4;
   background-image: linear-gradient(-90deg, #d2e5d4, #f2ffed);
@@ -435,7 +435,7 @@ button:active {
 @media (min-width: 768px) {
   .post-content .pull-quote {
     border-left-width: 0.25rem;
-    margin: 2rem auto 0; 
+    margin: 2rem auto 0;
     padding: 0.5rem 1.5rem;
     max-width: 43.75rem;
     font-size: 1.15rem;
@@ -512,8 +512,8 @@ on larger screens, footnotes transform into sidenotes
 }
 
 /* stop sidenote overhang from causing a horizontal scrollbar */
-body { 
-  overflow-x: clip; 
+body {
+  overflow-x: clip;
 }
 
 /* bottom footnotes */
