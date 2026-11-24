@@ -206,7 +206,13 @@ img {
 .post-content p {
   margin-bottom: 1.8rem;
   font-size: 1.15rem;
-  text-align: justify;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .post-content p {
+    text-align: justify;
+  }
 }
 
 .post-content h2 {
